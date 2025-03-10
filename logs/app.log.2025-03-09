@@ -1,0 +1,74 @@
+2025-03-09 02:02:19,199 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-09 02:02:19,199 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-09 02:02:19,200 - kafka.conn - ERROR - Connect attempt to <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]> returned error 111. Disconnecting.
+2025-03-09 02:02:19,200 - kafka.conn - ERROR - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. KafkaConnectionError: 111 ECONNREFUSED
+2025-03-09 02:02:19,249 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-09 02:02:19,250 - kafka.conn - ERROR - Connect attempt to <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]> returned error 111. Disconnecting.
+2025-03-09 02:02:19,250 - kafka.conn - ERROR - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. KafkaConnectionError: 111 ECONNREFUSED
+2025-03-09 02:02:19,250 - app.app - ERROR - Failed to connect to Kafka: NoBrokersAvailable
+2025-03-09 02:07:22,124 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-09 02:07:22,124 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-09 02:07:22,124 - kafka.conn - ERROR - Connect attempt to <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]> returned error 111. Disconnecting.
+2025-03-09 02:07:22,125 - kafka.conn - ERROR - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. KafkaConnectionError: 111 ECONNREFUSED
+2025-03-09 02:07:22,174 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-09 02:07:22,174 - kafka.conn - ERROR - Connect attempt to <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]> returned error 111. Disconnecting.
+2025-03-09 02:07:22,174 - kafka.conn - ERROR - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. KafkaConnectionError: 111 ECONNREFUSED
+2025-03-09 02:07:22,175 - app.app - ERROR - Failed to connect to Kafka: NoBrokersAvailable
+2025-03-09 02:07:25,877 - app.app - INFO - Detecting changes for company: Balance-Sheet-TTM
+2025-03-09 02:07:25,890 - app.app - ERROR - Error reading new file: Must specify a fill 'value' or 'method'.
+2025-03-09 02:07:25,891 - app.app - ERROR - Error processing file: 400: Error reading CSV file: Must specify a fill 'value' or 'method'.
+2025-03-09 02:32:00,635 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-09 02:32:00,635 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-09 02:32:00,636 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-09 02:32:00,746 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-09 02:32:00,746 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-09 02:32:06,466 - app.app - INFO - Detecting changes for company: Balance-Sheet-TTM
+2025-03-09 02:32:06,476 - app.app - ERROR - Error reading new file: Must specify a fill 'value' or 'method'.
+2025-03-09 02:32:06,476 - app.app - ERROR - Error processing file: 400: Error reading CSV file: Must specify a fill 'value' or 'method'.
+2025-03-09 02:34:18,383 - kafka.producer.kafka - INFO - Closing the Kafka producer with 0 secs timeout.
+2025-03-09 02:34:18,383 - kafka.producer.kafka - INFO - Proceeding to force close the producer since pending requests could not be completed within timeout 0.
+2025-03-09 02:34:26,586 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-09 02:34:26,586 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-09 02:34:26,587 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-09 02:34:26,691 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-09 02:34:26,691 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-09 02:34:30,565 - app.app - INFO - Detecting changes for company: Balance-Sheet-TTM
+2025-03-09 02:34:30,599 - app.app - INFO - Using key column: Company
+2025-03-09 02:34:30,669 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-09 02:34:30,669 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-09 02:34:30,670 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-09 02:34:30,698 - app.app - INFO - Sent 5 events to Kafka
+2025-03-09 02:37:21,605 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-09 02:37:21,605 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-09 02:37:21,607 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-09 02:37:21,711 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-09 02:37:21,711 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-09 02:37:33,271 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-09 02:37:33,271 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-09 02:37:33,272 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-09 02:37:33,374 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-09 02:37:33,375 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-09 02:37:53,991 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-09 02:37:53,992 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-09 02:37:53,995 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-09 02:37:54,098 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-09 02:37:54,098 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-09 02:38:35,519 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-09 02:38:35,520 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-09 02:38:35,520 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-09 02:38:35,630 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-09 02:38:35,631 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-09 02:39:36,469 - app.app - INFO - Detecting changes for company: Balance-Sheet-TTM
+2025-03-09 02:39:36,521 - app.app - INFO - Using key column: Company
+2025-03-09 02:39:36,636 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-09 02:39:36,637 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-09 02:39:36,637 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-09 02:39:36,666 - app.app - INFO - Sent 5 events to Kafka
+2025-03-09 12:27:56,761 - kafka.client - INFO - Closing idle connection 1, last active 32000082 ms ago
+2025-03-09 12:27:56,814 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-09 12:27:56,897 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-09 12:27:56,906 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-09 13:22:05,699 - kafka.client - INFO - Closing idle connection 1, last active 1448734 ms ago
+2025-03-09 13:22:05,757 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-09 13:22:05,844 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-09 13:22:05,848 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.

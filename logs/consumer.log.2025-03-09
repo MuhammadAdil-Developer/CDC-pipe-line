@@ -1,0 +1,63 @@
+2025-03-09 02:39:16,945 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-09 02:39:16,945 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-09 02:39:16,946 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-09 02:39:17,048 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-09 02:39:17,049 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-09 02:39:17,049 - kafka.consumer.subscription_state - INFO - Updating subscribed topics to: ('cdc-events',)
+2025-03-09 02:39:17,049 - __main__ - INFO - Connected to Kafka, consuming from topic: cdc-events
+2025-03-09 02:39:17,053 - kafka.cluster - INFO - Group coordinator for cdc-processor is BrokerMetadata(nodeId='coordinator-1', host='localhost', port=9092, rack=None)
+2025-03-09 02:39:17,053 - kafka.coordinator - INFO - Discovered coordinator coordinator-1 for group cdc-processor
+2025-03-09 02:39:17,054 - kafka.coordinator - INFO - Starting new heartbeat thread
+2025-03-09 02:39:17,054 - kafka.coordinator.consumer - INFO - Revoking previously assigned partitions set() for group cdc-processor
+2025-03-09 02:39:17,055 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-09 02:39:17,056 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-09 02:39:17,056 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-09 02:39:17,157 - kafka.coordinator - INFO - (Re-)joining group cdc-processor
+2025-03-09 02:39:20,191 - kafka.coordinator - INFO - Elected group leader -- performing partition assignments using range
+2025-03-09 02:39:20,192 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-09 02:39:20,193 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-09 02:39:20,204 - kafka.coordinator - INFO - Successfully joined group cdc-processor with generation 3
+2025-03-09 02:39:20,204 - kafka.consumer.subscription_state - INFO - Updated partition assignment: [TopicPartition(topic='cdc-events', partition=0)]
+2025-03-09 02:39:20,205 - kafka.coordinator.consumer - INFO - Setting newly assigned partitions {TopicPartition(topic='cdc-events', partition=0)} for group cdc-processor
+2025-03-09 02:39:36,651 - __main__ - INFO - Received event: 11048034-1881-4cef-a039-f5d09b9c5689 of type update
+2025-03-09 02:39:36,674 - __main__ - INFO - Processed event 11048034-1881-4cef-a039-f5d09b9c5689 of type update
+2025-03-09 02:39:36,782 - __main__ - INFO - Generated parquet file: ./data/parquet/Balance-Sheet-TTM/temp_Balance-Sheet-TTM_b24993c4/update_20250309023936_so-financials.parquet
+2025-03-09 02:39:36,784 - __main__ - INFO - Received event: b5b927bc-836a-49d8-a92d-fb5d58841501 of type update
+2025-03-09 02:39:36,790 - __main__ - INFO - Processed event b5b927bc-836a-49d8-a92d-fb5d58841501 of type update
+2025-03-09 02:39:36,859 - __main__ - INFO - Generated parquet file: ./data/parquet/Balance-Sheet-TTM/temp_Balance-Sheet-TTM_b24993c4/update_20250309023936_aep-financials.parquet
+2025-03-09 02:39:36,865 - __main__ - INFO - Received event: e133bb4e-4148-45bf-a0f9-54b1cebf2251 of type update
+2025-03-09 02:39:36,872 - __main__ - INFO - Processed event e133bb4e-4148-45bf-a0f9-54b1cebf2251 of type update
+2025-03-09 02:39:36,937 - __main__ - INFO - Generated parquet file: ./data/parquet/Balance-Sheet-TTM/temp_Balance-Sheet-TTM_b24993c4/update_20250309023936_nee-financials.parquet
+2025-03-09 02:39:36,938 - __main__ - INFO - Received event: c8ab4b4a-a231-42db-9e08-f3f791042a9b of type update
+2025-03-09 02:39:36,945 - __main__ - INFO - Processed event c8ab4b4a-a231-42db-9e08-f3f791042a9b of type update
+2025-03-09 02:39:36,993 - __main__ - INFO - Generated parquet file: ./data/parquet/Balance-Sheet-TTM/temp_Balance-Sheet-TTM_b24993c4/update_20250309023936_duk-financials.parquet
+2025-03-09 02:39:36,994 - __main__ - INFO - Received event: 6235e9b6-a364-400c-bf4b-7cd9b360cec5 of type update
+2025-03-09 02:39:37,000 - __main__ - INFO - Processed event 6235e9b6-a364-400c-bf4b-7cd9b360cec5 of type update
+2025-03-09 02:39:37,054 - __main__ - INFO - Generated parquet file: ./data/parquet/Balance-Sheet-TTM/temp_Balance-Sheet-TTM_b24993c4/update_20250309023936_ngg-financials.parquet
+2025-03-09 12:27:56,746 - kafka.client - WARNING - <BrokerConnection node_id=1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]> timed out after 305000 ms. Closing connection.
+2025-03-09 12:27:56,751 - kafka.conn - ERROR - <BrokerConnection node_id=1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. [Error 7] RequestTimedOutError: Request timed out after 305000 ms
+2025-03-09 12:27:56,751 - kafka.consumer.fetcher - ERROR - Fetch to node 1 failed: [Error 7] RequestTimedOutError: Request timed out after 305000 ms
+2025-03-09 12:27:56,751 - kafka.client - INFO - Closing idle connection coordinator-1, last active 31915636 ms ago
+2025-03-09 12:27:56,752 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-09 12:27:56,757 - kafka.coordinator - WARNING - Heartbeat session expired, marking coordinator dead
+2025-03-09 12:27:56,757 - kafka.coordinator - WARNING - Marking the coordinator dead (node coordinator-1) for group cdc-processor: Heartbeat session expired.
+2025-03-09 12:27:56,758 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-09 12:27:56,870 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-09 12:27:56,873 - kafka.cluster - INFO - Group coordinator for cdc-processor is BrokerMetadata(nodeId='coordinator-1', host='localhost', port=9092, rack=None)
+2025-03-09 12:27:56,874 - kafka.coordinator - INFO - Discovered coordinator coordinator-1 for group cdc-processor
+2025-03-09 12:27:56,874 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-09 12:27:56,876 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-09 12:27:57,382 - kafka.coordinator.consumer - WARNING - Auto offset commit failed for group cdc-processor: NodeNotReadyError: coordinator-1
+2025-03-09 13:22:05,677 - kafka.client - WARNING - <BrokerConnection node_id=1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]> timed out after 305000 ms. Closing connection.
+2025-03-09 13:22:05,711 - kafka.conn - ERROR - <BrokerConnection node_id=1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. [Error 7] RequestTimedOutError: Request timed out after 305000 ms
+2025-03-09 13:22:05,711 - kafka.consumer.fetcher - ERROR - Fetch to node 1 failed: [Error 7] RequestTimedOutError: Request timed out after 305000 ms
+2025-03-09 13:22:05,712 - kafka.client - INFO - Closing idle connection coordinator-1, last active 1152656 ms ago
+2025-03-09 13:22:05,712 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-09 13:22:05,757 - kafka.coordinator - WARNING - Heartbeat session expired, marking coordinator dead
+2025-03-09 13:22:05,768 - kafka.coordinator - WARNING - Marking the coordinator dead (node coordinator-1) for group cdc-processor: Heartbeat session expired.
+2025-03-09 13:22:05,783 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-09 13:22:05,784 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-09 13:22:05,807 - kafka.cluster - INFO - Group coordinator for cdc-processor is BrokerMetadata(nodeId='coordinator-1', host='localhost', port=9092, rack=None)
+2025-03-09 13:22:05,808 - kafka.coordinator - INFO - Discovered coordinator coordinator-1 for group cdc-processor
+2025-03-09 13:22:05,809 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-09 13:22:05,811 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
