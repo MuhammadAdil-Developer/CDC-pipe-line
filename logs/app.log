@@ -1,44 +1,200 @@
-2025-03-10 13:49:48,971 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
-2025-03-10 13:49:48,973 - kafka.conn - INFO - Probing node bootstrap-0 broker version
-2025-03-10 13:49:48,974 - kafka.conn - ERROR - Connect attempt to <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]> returned error 111. Disconnecting.
-2025-03-10 13:49:48,974 - kafka.conn - ERROR - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. KafkaConnectionError: 111 ECONNREFUSED
-2025-03-10 13:49:49,023 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
-2025-03-10 13:49:49,024 - kafka.conn - ERROR - Connect attempt to <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]> returned error 111. Disconnecting.
-2025-03-10 13:49:49,024 - kafka.conn - ERROR - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. KafkaConnectionError: 111 ECONNREFUSED
-2025-03-10 13:49:49,025 - app.app - ERROR - Failed to connect to Kafka: NoBrokersAvailable
-2025-03-10 13:55:01,283 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
-2025-03-10 13:55:01,284 - kafka.conn - INFO - Probing node bootstrap-0 broker version
-2025-03-10 13:55:01,286 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
-2025-03-10 13:55:01,570 - kafka.conn - INFO - Broker version identified as 2.6.0
-2025-03-10 13:55:01,572 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
-2025-03-10 14:00:01,676 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
-2025-03-10 14:00:01,678 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
-2025-03-10 14:00:01,679 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
-2025-03-10 14:08:15,053 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
-2025-03-10 14:08:15,054 - kafka.conn - INFO - Probing node bootstrap-0 broker version
-2025-03-10 14:08:15,055 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
-2025-03-10 14:08:15,168 - kafka.conn - INFO - Broker version identified as 2.6.0
-2025-03-10 14:08:15,169 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
-2025-03-10 14:12:53,819 - app.app - INFO - Detecting changes for company: Ratios-TTM
-2025-03-10 14:12:54,385 - app.app - INFO - Using key column: Company
-2025-03-10 14:12:54,385 - app.app - INFO - No previous file found. Treating all rows as inserts.
-2025-03-10 14:12:54,721 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
-2025-03-10 14:12:54,726 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
-2025-03-10 14:12:54,748 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
-2025-03-10 14:12:57,741 - app.app - INFO - Sent 135 events to Kafka
-2025-03-10 14:14:37,641 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
-2025-03-10 14:14:37,647 - kafka.conn - INFO - Probing node bootstrap-0 broker version
-2025-03-10 14:14:37,649 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
-2025-03-10 14:14:37,784 - kafka.conn - INFO - Broker version identified as 2.6.0
-2025-03-10 14:14:37,784 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
-2025-03-10 14:19:02,178 - app.app - INFO - Detecting changes for company: Ratios-TTM
-2025-03-10 14:19:02,303 - app.app - INFO - Using key column: Company
-2025-03-10 14:19:02,680 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
-2025-03-10 14:19:02,687 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
-2025-03-10 14:19:02,689 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
-2025-03-10 14:19:02,830 - app.app - INFO - Sent 5 events to Kafka
-2025-03-10 15:19:21,613 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
-2025-03-10 15:19:21,614 - kafka.conn - INFO - Probing node bootstrap-0 broker version
-2025-03-10 15:19:21,615 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
-2025-03-10 15:19:21,725 - kafka.conn - INFO - Broker version identified as 2.6.0
-2025-03-10 15:19:21,727 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 00:02:35,611 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 00:02:35,613 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 00:02:35,613 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 00:02:35,717 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 00:02:35,717 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 00:02:57,565 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 00:02:57,565 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 00:02:57,566 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 00:02:57,669 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 00:02:57,669 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 00:03:16,487 - app.app - INFO - Detecting changes for company: 123, table: balance
+2025-03-15 00:03:16,503 - app.app - INFO - Using key column: Company
+2025-03-15 00:03:16,580 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 00:03:16,580 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 00:03:16,580 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-15 00:03:16,598 - app.app - INFO - Sent 5 events to Kafka
+2025-03-15 00:04:20,636 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 00:04:20,637 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 00:04:20,638 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 00:04:20,740 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 00:04:20,741 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 00:04:34,307 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 00:04:34,308 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 00:04:34,309 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 00:04:34,413 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 00:04:34,414 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 00:04:46,141 - app.app - INFO - Detecting changes for company: 123, table: balance
+2025-03-15 00:04:46,156 - app.app - INFO - Using key column: Company
+2025-03-15 00:05:04,821 - app.app - INFO - Detecting changes for company: 123, table: balance
+2025-03-15 00:05:04,837 - app.app - INFO - Using key column: Company
+2025-03-15 00:05:04,918 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 00:05:04,919 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 00:05:04,919 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-15 00:05:04,937 - app.app - INFO - Sent 5 events to Kafka
+2025-03-15 00:22:16,692 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 00:22:16,693 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 00:22:16,693 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 00:22:16,799 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 00:22:16,799 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 00:26:23,513 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 00:26:23,513 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 00:26:23,514 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 00:26:23,617 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 00:26:23,618 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 00:30:40,362 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 00:30:40,363 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 00:30:40,364 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 00:30:40,467 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 00:30:40,467 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 00:35:40,532 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 00:35:40,533 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 00:35:40,534 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-15 00:42:50,643 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 00:42:50,644 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 00:42:50,644 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 00:42:50,747 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 00:42:50,748 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 00:42:52,718 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 00:42:52,719 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 00:42:52,721 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 00:42:52,830 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 00:42:52,831 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 00:42:54,985 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 00:42:54,986 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 00:42:54,986 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 00:42:55,090 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 00:42:55,090 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 00:43:18,516 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 00:43:18,517 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 00:43:18,519 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 00:43:18,624 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 00:43:18,624 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 00:43:22,378 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 00:43:22,379 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 00:43:22,379 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 00:43:22,483 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 00:43:22,484 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 00:43:40,934 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 00:43:40,934 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 00:43:40,935 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 00:43:41,038 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 00:43:41,038 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 00:44:22,375 - app.app - INFO - Detecting changes for company: 123, table: balance
+2025-03-15 00:44:22,395 - app.app - INFO - Using key column: Company
+2025-03-15 00:44:22,477 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 00:44:22,478 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 00:44:22,479 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-15 00:44:22,498 - app.app - INFO - Sent 5 events to Kafka
+2025-03-15 01:36:03,189 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 01:36:03,189 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 01:36:03,190 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 01:36:03,293 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 01:36:03,293 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 01:41:00,899 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 01:41:00,899 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 01:41:00,900 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 01:41:01,002 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 01:41:01,002 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 01:41:31,127 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 01:41:31,127 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 01:41:31,128 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 01:41:31,230 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 01:41:31,231 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 01:41:47,953 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 01:41:47,953 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 01:41:47,954 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 01:41:48,057 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 01:41:48,057 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 01:42:46,146 - app.app - INFO - Detecting changes for company: 123, table: balance
+2025-03-15 01:42:46,168 - app.app - INFO - Using key column: Company
+2025-03-15 01:42:46,245 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 01:42:46,246 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 01:42:46,246 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-15 01:42:46,278 - app.app - INFO - Sent 5 events to Kafka
+2025-03-15 01:43:58,389 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 01:43:58,390 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 01:43:58,391 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 01:43:58,498 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 01:43:58,500 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 01:44:02,940 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 01:44:02,941 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 01:44:02,942 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 01:44:03,050 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 01:44:03,053 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 01:49:03,131 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 01:49:03,132 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 01:49:03,133 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-15 01:50:48,347 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 01:50:48,347 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 01:50:48,348 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 01:50:48,453 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 01:50:48,453 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 01:51:19,219 - app.app - INFO - Detecting changes for company: 123, table: balance
+2025-03-15 01:51:19,236 - app.app - INFO - Using key column: Company
+2025-03-15 01:51:19,365 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 01:51:19,365 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 01:51:19,365 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-15 01:51:19,384 - app.app - INFO - Sent 5 events to Kafka
+2025-03-15 01:58:45,998 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 01:58:45,999 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 01:58:46,000 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 01:58:46,103 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 01:58:46,103 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 01:59:01,912 - app.app - INFO - Detecting changes for company: 123, table: balance
+2025-03-15 01:59:01,935 - app.app - INFO - Using key column: Company
+2025-03-15 01:59:02,032 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 01:59:02,035 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 01:59:02,035 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-15 01:59:02,057 - app.app - INFO - Sent 5 events to Kafka
+2025-03-15 02:37:21,204 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 02:37:21,206 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 02:37:21,206 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 02:37:21,311 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 02:37:21,311 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 02:37:40,880 - app.app - INFO - Detecting changes for company: 123, table: balance
+2025-03-15 02:37:40,902 - app.app - INFO - Using key column: Company
+2025-03-15 02:37:40,988 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 02:37:40,988 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 02:37:40,989 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-15 02:37:41,002 - app.app - INFO - Sent 5 events to Kafka
+2025-03-15 02:39:22,960 - app.app - INFO - Detecting changes for company: 123, table: balance
+2025-03-15 02:39:22,973 - app.app - INFO - Using key column: Company
+2025-03-15 02:39:23,117 - app.app - INFO - Sent 5 events to Kafka
+2025-03-15 13:20:56,882 - kafka.client - INFO - Closing idle connection 1, last active 36195830 ms ago
+2025-03-15 13:20:56,898 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-15 13:20:56,972 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 13:20:56,973 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 15:08:58,295 - kafka.client - INFO - Closing idle connection 1, last active 5281255 ms ago
+2025-03-15 15:08:58,302 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-15 15:08:58,365 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 15:08:58,366 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 17:51:16,624 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 17:51:16,625 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 17:51:16,625 - kafka.conn - ERROR - Connect attempt to <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]> returned error 111. Disconnecting.
+2025-03-15 17:51:16,626 - kafka.conn - ERROR - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. KafkaConnectionError: 111 ECONNREFUSED
+2025-03-15 17:51:16,675 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 17:51:16,675 - kafka.conn - ERROR - Connect attempt to <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]> returned error 111. Disconnecting.
+2025-03-15 17:51:16,675 - kafka.conn - ERROR - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. KafkaConnectionError: 111 ECONNREFUSED
+2025-03-15 17:51:16,676 - app.app - ERROR - Failed to connect to Kafka: NoBrokersAvailable
+2025-03-15 18:01:21,647 - app.app - INFO - Detecting changes for company: aep-financials, table: Income-Sheet
+2025-03-15 18:01:21,672 - app.app - INFO - Using key column: Company
+2025-03-15 18:01:21,672 - app.app - INFO - No previous file found. Treating all rows as inserts.
+2025-03-15 18:01:21,744 - app.app - ERROR - Kafka producer not available
+2025-03-15 18:01:21,744 - app.app - WARNING - Failed to send events to Kafka, but processing will continue
+2025-03-15 18:01:57,977 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 18:01:57,978 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 18:01:57,979 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 18:01:58,089 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 18:01:58,090 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 18:02:08,412 - app.app - INFO - Detecting changes for company: aep-financials, table: Income-Sheet
+2025-03-15 18:02:08,443 - app.app - INFO - Using key column: Company
+2025-03-15 18:02:25,441 - app.app - INFO - Detecting changes for company: aep-financials, table: Income-Sheet
+2025-03-15 18:02:25,539 - app.app - INFO - Using key column: Company
+2025-03-15 18:02:25,709 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 18:02:25,710 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 18:02:25,711 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-15 18:02:25,798 - app.app - INFO - Sent 5 events to Kafka
+2025-03-15 18:05:10,348 - app.app - INFO - Detecting changes for company: aep-financials, table: Income-Sheet
+2025-03-15 18:05:10,373 - app.app - INFO - Using key column: Company
+2025-03-15 18:05:10,507 - app.app - INFO - Sent 5 events to Kafka

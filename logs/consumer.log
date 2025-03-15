@@ -1,786 +1,616 @@
-2025-03-10 13:52:35,759 - __main__ - ERROR - Error connecting to database: connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
-connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
-
-2025-03-10 13:52:35,762 - __main__ - ERROR - Could not connect to database, exiting
-2025-03-10 13:53:30,174 - __main__ - ERROR - Error connecting to database: connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
-connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
-
-2025-03-10 13:53:30,175 - __main__ - ERROR - Could not connect to database, exiting
-2025-03-10 13:54:40,018 - __main__ - ERROR - Error connecting to database: connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
-connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
-
-2025-03-10 13:54:40,018 - __main__ - ERROR - Could not connect to database, exiting
-2025-03-10 14:07:44,547 - __main__ - ERROR - Error connecting to database: connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  database "cdc_data" does not exist
-
-2025-03-10 14:07:44,549 - __main__ - ERROR - Could not connect to database, exiting
-2025-03-10 14:08:13,914 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
-2025-03-10 14:08:13,915 - kafka.conn - INFO - Probing node bootstrap-0 broker version
-2025-03-10 14:08:13,917 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
-2025-03-10 14:08:14,029 - kafka.conn - INFO - Broker version identified as 2.6.0
-2025-03-10 14:08:14,030 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
-2025-03-10 14:08:14,032 - kafka.consumer.subscription_state - INFO - Updating subscribed topics to: ('cdc-events',)
-2025-03-10 14:08:14,032 - __main__ - INFO - Connected to Kafka, consuming from topic: cdc-events
-2025-03-10 14:08:14,071 - kafka.cluster - INFO - Group coordinator for cdc-processor is BrokerMetadata(nodeId='coordinator-1', host='localhost', port=9092, rack=None)
-2025-03-10 14:08:14,072 - kafka.coordinator - INFO - Discovered coordinator coordinator-1 for group cdc-processor
-2025-03-10 14:08:14,073 - kafka.coordinator - INFO - Starting new heartbeat thread
-2025-03-10 14:08:14,075 - kafka.coordinator.consumer - INFO - Revoking previously assigned partitions set() for group cdc-processor
-2025-03-10 14:08:14,078 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
-2025-03-10 14:08:14,082 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
-2025-03-10 14:08:14,086 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
-2025-03-10 14:08:14,188 - kafka.coordinator - INFO - (Re-)joining group cdc-processor
-2025-03-10 14:08:14,190 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
-2025-03-10 14:08:14,191 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
-2025-03-10 14:08:17,265 - kafka.coordinator - INFO - Elected group leader -- performing partition assignments using range
-2025-03-10 14:08:17,271 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
-2025-03-10 14:08:17,273 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
-2025-03-10 14:08:17,275 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
-2025-03-10 14:08:17,365 - kafka.coordinator - INFO - Successfully joined group cdc-processor with generation 5
-2025-03-10 14:08:17,367 - kafka.consumer.subscription_state - INFO - Updated partition assignment: [TopicPartition(topic='cdc-events', partition=0)]
-2025-03-10 14:08:17,370 - kafka.coordinator.consumer - INFO - Setting newly assigned partitions {TopicPartition(topic='cdc-events', partition=0)} for group cdc-processor
-2025-03-10 14:12:55,006 - __main__ - INFO - Received event: 13bfbabb-d510-4206-8add-024639d829da of type insert
-2025-03-10 14:12:55,014 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,019 - __main__ - INFO - Received event: 19e835f6-3627-4081-9892-5d2c3703a890 of type insert
-2025-03-10 14:12:55,030 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,034 - __main__ - INFO - Received event: b52b2156-38d7-4712-a2f0-6df03d72fbad of type insert
-2025-03-10 14:12:55,038 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,043 - __main__ - INFO - Received event: 68c46952-7b75-43cb-b7de-218ff2ead26d of type insert
-2025-03-10 14:12:55,051 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,052 - __main__ - INFO - Received event: 33ea8f6c-3c32-4aa4-85fe-1e1fc6d0a1cc of type insert
-2025-03-10 14:12:55,071 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,072 - __main__ - INFO - Received event: 799d359c-6f7d-434e-8cc9-0fafbf792763 of type insert
-2025-03-10 14:12:55,075 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,077 - __main__ - INFO - Received event: f1e15ffe-f677-458d-b08a-03e7ff09531a of type insert
-2025-03-10 14:12:55,080 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,081 - __main__ - INFO - Received event: bfcbf3a9-bdf5-4979-96ba-28918b833a2f of type insert
-2025-03-10 14:12:55,084 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,131 - __main__ - INFO - Received event: a6781c9f-8b29-4dab-bb02-2dac7c45f0c2 of type insert
-2025-03-10 14:12:55,137 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,138 - __main__ - INFO - Received event: cccc01b3-5138-4fc1-9a1d-3c3e4e6b909d of type insert
-2025-03-10 14:12:55,142 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,143 - __main__ - INFO - Received event: ca1a8b06-59ec-400c-a255-83399f63126a of type insert
-2025-03-10 14:12:55,147 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,149 - __main__ - INFO - Received event: 8a6654da-bb83-41f7-a6c5-d3cac0b3c42d of type insert
-2025-03-10 14:12:55,153 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,154 - __main__ - INFO - Received event: 41d05b04-de5c-43d2-92f3-98e2197e1093 of type insert
-2025-03-10 14:12:55,157 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,159 - __main__ - INFO - Received event: 528ac8be-aadf-408c-b90c-4f9513e6ed81 of type insert
-2025-03-10 14:12:55,162 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,163 - __main__ - INFO - Received event: 91310ff4-99d1-4600-9d5c-952b813d3484 of type insert
-2025-03-10 14:12:55,166 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,167 - __main__ - INFO - Received event: a3b35f13-267b-4975-9662-eac4a3bc1370 of type insert
-2025-03-10 14:12:55,171 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,172 - __main__ - INFO - Received event: 4e600146-043a-4f0f-bdaf-d831adf1eaf5 of type insert
-2025-03-10 14:12:55,174 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,175 - __main__ - INFO - Received event: 391cbbd7-5e6f-4774-9f60-e70730976f89 of type insert
-2025-03-10 14:12:55,178 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,179 - __main__ - INFO - Received event: 4d0c2949-b9f8-4308-aa6c-03fb26ce578d of type insert
-2025-03-10 14:12:55,182 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,183 - __main__ - INFO - Received event: 7933bac2-e998-4164-8fc6-8657a18f2943 of type insert
-2025-03-10 14:12:55,186 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,187 - __main__ - INFO - Received event: a6a8490a-1cd4-47d2-97e8-6bed45af3a2e of type insert
-2025-03-10 14:12:55,190 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,191 - __main__ - INFO - Received event: e377ceb2-8806-4d3e-9c1d-edd00910f784 of type insert
-2025-03-10 14:12:55,195 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,196 - __main__ - INFO - Received event: c936b815-9797-4e1f-b41a-0076bafa9bb2 of type insert
-2025-03-10 14:12:55,199 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,324 - __main__ - INFO - Received event: 2fcda2ec-f4dc-4273-9039-54b068b5d389 of type insert
-2025-03-10 14:12:55,368 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,370 - __main__ - INFO - Received event: d7f1a1ed-0ed0-48b7-89e2-6b8c1e3311c5 of type insert
-2025-03-10 14:12:55,380 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,506 - __main__ - INFO - Received event: 3362f634-cddb-4e36-abff-43e8ee028455 of type insert
-2025-03-10 14:12:55,511 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,526 - __main__ - INFO - Received event: 3aed598b-3e0b-4f20-8ded-281f344c3f5d of type insert
-2025-03-10 14:12:55,533 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,535 - __main__ - INFO - Received event: b302196d-0dea-413d-8836-4f4286696202 of type insert
-2025-03-10 14:12:55,545 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,563 - __main__ - INFO - Received event: 6c4058cf-272e-4bd7-a2d7-e8a5e1356c7b of type insert
-2025-03-10 14:12:55,570 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,583 - __main__ - INFO - Received event: ac0425f9-0ff4-4c1e-8abc-ffae02b4ea3f of type insert
-2025-03-10 14:12:55,606 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,608 - __main__ - INFO - Received event: ca53a527-29dd-495b-982c-f977b2bb709f of type insert
-2025-03-10 14:12:55,612 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,614 - __main__ - INFO - Received event: 484518be-ada4-4f9a-86d4-2f7c14c9302b of type insert
-2025-03-10 14:12:55,624 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,647 - __main__ - INFO - Received event: 25a8fa23-e9f7-4343-8fc8-35c608390c48 of type insert
-2025-03-10 14:12:55,677 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,679 - __main__ - INFO - Received event: 95435b5d-34ff-436a-bd9a-05e0bf0b3dfe of type insert
-2025-03-10 14:12:55,684 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,686 - __main__ - INFO - Received event: f65468fd-93d7-4402-b222-22b8a47dfeb8 of type insert
-2025-03-10 14:12:55,690 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,692 - __main__ - INFO - Received event: ffd0d11d-2d4d-4d6c-ba02-1d20798b60e5 of type insert
-2025-03-10 14:12:55,697 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,698 - __main__ - INFO - Received event: 366e8a99-04b7-4373-adcd-7417edfbe41d of type insert
-2025-03-10 14:12:55,703 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,705 - __main__ - INFO - Received event: f2ffce38-06fe-4f69-8858-49628ff41d41 of type insert
-2025-03-10 14:12:55,711 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,713 - __main__ - INFO - Received event: fb6b052d-2998-4118-b058-fe9b166075de of type insert
-2025-03-10 14:12:55,716 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,740 - __main__ - INFO - Received event: 37bf4706-ae3d-449a-9a50-ab55fce1e392 of type insert
-2025-03-10 14:12:55,762 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,776 - __main__ - INFO - Received event: 6bd9000f-4f4a-4c1c-ae3d-7422c38f9966 of type insert
-2025-03-10 14:12:55,795 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,805 - __main__ - INFO - Received event: 377808b6-7501-4ea9-a085-9e57a595f70a of type insert
-2025-03-10 14:12:55,825 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:55,890 - __main__ - INFO - Received event: 8a87a9be-a5bc-470f-8cca-13571fe69f71 of type insert
-2025-03-10 14:12:56,001 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,016 - __main__ - INFO - Received event: 0739b302-36e0-41f9-9850-ab580c58cae9 of type insert
-2025-03-10 14:12:56,069 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,077 - __main__ - INFO - Received event: b304edd8-a2a8-4bef-bf5c-97f93420425a of type insert
-2025-03-10 14:12:56,093 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,095 - __main__ - INFO - Received event: b2a826d5-bdeb-4c38-84cd-2e67e79aad11 of type insert
-2025-03-10 14:12:56,113 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,126 - __main__ - INFO - Received event: 246c8375-f26f-4c40-8105-25130e70dc82 of type insert
-2025-03-10 14:12:56,142 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,189 - __main__ - INFO - Received event: b14b4036-44e6-49cd-bd73-5ec34a32be95 of type insert
-2025-03-10 14:12:56,229 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,233 - __main__ - INFO - Received event: d2f04c76-0384-434c-85c1-e7910218daa6 of type insert
-2025-03-10 14:12:56,275 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,287 - __main__ - INFO - Received event: b86e4884-22cd-4665-b067-857f05664c6c of type insert
-2025-03-10 14:12:56,312 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,321 - __main__ - INFO - Received event: d0fca614-16bd-42c6-8c72-27033588ab22 of type insert
-2025-03-10 14:12:56,342 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,351 - __main__ - INFO - Received event: 54119056-a9dd-46ce-bd73-937968be9eb5 of type insert
-2025-03-10 14:12:56,401 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,418 - __main__ - INFO - Received event: 32b378ea-3b19-4579-b7e2-3bcfffb85c5b of type insert
-2025-03-10 14:12:56,470 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,507 - __main__ - INFO - Received event: 70d6d348-ced3-434b-ac07-923bb97cd075 of type insert
-2025-03-10 14:12:56,525 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,536 - __main__ - INFO - Received event: 7f68caa5-c900-4b98-a4f0-63455e4b268c of type insert
-2025-03-10 14:12:56,555 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,576 - __main__ - INFO - Received event: 8a36935b-99cd-4699-bbce-76daf27f93c4 of type insert
-2025-03-10 14:12:56,655 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,676 - __main__ - INFO - Received event: 192af5e3-73aa-4a9b-993d-06d43c98468c of type insert
-2025-03-10 14:12:56,698 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,700 - __main__ - INFO - Received event: 99bcb867-48df-44e9-9f4c-0b90f4e299f1 of type insert
-2025-03-10 14:12:56,711 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,718 - __main__ - INFO - Received event: aff3cb74-9a07-454b-a794-7e4aaca23cf4 of type insert
-2025-03-10 14:12:56,726 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,756 - __main__ - INFO - Received event: 1c80ea7b-7db7-40d2-ba78-52a4b886b756 of type insert
-2025-03-10 14:12:56,761 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,762 - __main__ - INFO - Received event: 472fbadb-0fc2-46f9-a6a0-d4d3724f2b49 of type insert
-2025-03-10 14:12:56,766 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,767 - __main__ - INFO - Received event: 4b00cb3e-3d5d-4785-ac5a-86d227fdfd5c of type insert
-2025-03-10 14:12:56,773 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,775 - __main__ - INFO - Received event: bc35c5f4-bd55-4b84-83e6-04c0f3d8e07b of type insert
-2025-03-10 14:12:56,779 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,781 - __main__ - INFO - Received event: 6daa1834-85e3-496b-87d7-403fbd1bcd02 of type insert
-2025-03-10 14:12:56,785 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,786 - __main__ - INFO - Received event: 6ec001f5-2890-4326-b5de-d6c561fec08e of type insert
-2025-03-10 14:12:56,790 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,792 - __main__ - INFO - Received event: b55e0bfa-2ceb-4263-bdde-c9b6b0831798 of type insert
-2025-03-10 14:12:56,796 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,798 - __main__ - INFO - Received event: f59a7c48-309c-4416-933b-db8027e570e9 of type insert
-2025-03-10 14:12:56,801 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,803 - __main__ - INFO - Received event: b3c5efad-142a-4da6-8259-740809093138 of type insert
-2025-03-10 14:12:56,808 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,811 - __main__ - INFO - Received event: c9afb511-00e8-4fcc-bc8d-675911834087 of type insert
-2025-03-10 14:12:56,815 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,817 - __main__ - INFO - Received event: d5aaf79c-7856-40f5-875b-8ea2cd5336cd of type insert
-2025-03-10 14:12:56,820 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,822 - __main__ - INFO - Received event: 0a446a23-981a-4e8e-8f6d-9f2d1d8ae0a1 of type insert
-2025-03-10 14:12:56,827 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,828 - __main__ - INFO - Received event: 85d4c17b-48ce-49b6-a2f8-f9a77010b78a of type insert
-2025-03-10 14:12:56,832 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,834 - __main__ - INFO - Received event: 6fd9461a-d0a1-4e93-ae0f-bb1b9956e066 of type insert
-2025-03-10 14:12:56,838 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,839 - __main__ - INFO - Received event: c81cfd82-cf72-4bad-9809-cce47eebb59c of type insert
-2025-03-10 14:12:56,845 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,862 - __main__ - INFO - Received event: 725d6a58-7932-4588-8622-2dc98d08870c of type insert
-2025-03-10 14:12:56,871 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,875 - __main__ - INFO - Received event: 5d3f2298-dfc9-4c28-9d76-5a302dfff999 of type insert
-2025-03-10 14:12:56,878 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,880 - __main__ - INFO - Received event: ead5d82c-1571-45d7-addb-22e278890999 of type insert
-2025-03-10 14:12:56,882 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,884 - __main__ - INFO - Received event: fb9bbe49-e4de-48f5-93bd-06a5acbfc743 of type insert
-2025-03-10 14:12:56,887 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,908 - __main__ - INFO - Received event: e8cf213e-39a4-46dc-a529-f5e724633f30 of type insert
-2025-03-10 14:12:56,912 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:56,914 - __main__ - INFO - Received event: 01a776e3-833e-4eb2-81c5-cde07b3f2005 of type insert
-2025-03-10 14:12:56,925 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,027 - __main__ - INFO - Received event: fbf9f5d9-9f3c-4878-ab0c-d16e25252407 of type insert
-2025-03-10 14:12:57,036 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,040 - __main__ - INFO - Received event: 9989cb76-2beb-4899-b67e-016d8f121183 of type insert
-2025-03-10 14:12:57,054 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,056 - __main__ - INFO - Received event: 995f8914-fcdd-459a-a505-d4c1d49f320d of type insert
-2025-03-10 14:12:57,074 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,085 - __main__ - INFO - Received event: 2a2d0cb3-9eab-4f36-bf2c-55eee035b808 of type insert
-2025-03-10 14:12:57,095 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,118 - __main__ - INFO - Received event: 91932746-48e5-44a2-969f-079e371bfc01 of type insert
-2025-03-10 14:12:57,148 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,154 - __main__ - INFO - Received event: 9781fa7e-e178-498c-8e09-28d6aea69169 of type insert
-2025-03-10 14:12:57,180 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,233 - __main__ - INFO - Received event: d9d42df2-8a1e-4bce-b6e6-ea6fb458730e of type insert
-2025-03-10 14:12:57,263 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,265 - __main__ - INFO - Received event: 34d94a58-d26b-4529-8c78-fa4f676dc1a5 of type insert
-2025-03-10 14:12:57,269 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,272 - __main__ - INFO - Received event: 5c416cca-c8fe-4328-889a-6dc2b802d808 of type insert
-2025-03-10 14:12:57,281 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,283 - __main__ - INFO - Received event: 697ca7a4-81a6-4a93-b682-0ab7b5860e76 of type insert
-2025-03-10 14:12:57,288 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,325 - __main__ - INFO - Received event: 1e279e23-7d90-4943-9c66-16a5feb8a2ef of type insert
-2025-03-10 14:12:57,329 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,330 - __main__ - INFO - Received event: 23032d7a-13ba-41c9-829d-b4660b12af13 of type insert
-2025-03-10 14:12:57,334 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,335 - __main__ - INFO - Received event: 3b1fbf93-afe3-43cd-9f75-b1c90da305c5 of type insert
-2025-03-10 14:12:57,339 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,356 - __main__ - INFO - Received event: 770aa387-fb02-4f7f-8221-e2fc6efd0997 of type insert
-2025-03-10 14:12:57,369 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,371 - __main__ - INFO - Received event: 4d9e7cbd-6808-439c-a3d8-8470f27aa5e5 of type insert
-2025-03-10 14:12:57,381 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,400 - __main__ - INFO - Received event: b8347b62-eaac-45f1-b4a9-09f3d1bbf3be of type insert
-2025-03-10 14:12:57,415 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,417 - __main__ - INFO - Received event: 0ed959f0-e712-4e29-a0a9-afd5feb6cc64 of type insert
-2025-03-10 14:12:57,427 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,451 - __main__ - INFO - Received event: 094d0f0b-11db-4f31-b068-b049a7f34cb8 of type insert
-2025-03-10 14:12:57,458 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,462 - __main__ - INFO - Received event: 94e58dfb-635a-43a0-aeac-a2192c15e61f of type insert
-2025-03-10 14:12:57,486 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,488 - __main__ - INFO - Received event: 02a432cc-7fde-4362-b78e-925adf258469 of type insert
-2025-03-10 14:12:57,498 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,505 - __main__ - INFO - Received event: 32ee8db6-6872-4aaa-b904-2b9815a42af3 of type insert
-2025-03-10 14:12:57,513 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,516 - __main__ - INFO - Received event: b9708678-793b-4fbd-aed8-86511ee79b5c of type insert
-2025-03-10 14:12:57,524 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,540 - __main__ - INFO - Received event: f3e732d9-247c-4be0-b368-1e6db23285e8 of type insert
-2025-03-10 14:12:57,546 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,553 - __main__ - INFO - Received event: 9b654c14-d37b-406c-b511-7993248a2e07 of type insert
-2025-03-10 14:12:57,560 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,561 - __main__ - INFO - Received event: 8e2ef0f0-a8c4-47b3-bb96-b0944b3281eb of type insert
-2025-03-10 14:12:57,569 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,570 - __main__ - INFO - Received event: 1932aaba-e25c-4770-b86a-c366830ef770 of type insert
-2025-03-10 14:12:57,577 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,608 - __main__ - INFO - Received event: 3e0de115-3614-489b-9aaa-9e4c5781a1d2 of type insert
-2025-03-10 14:12:57,625 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,635 - __main__ - INFO - Received event: 9b9d466a-ed82-40a8-9a93-f9cddd417c14 of type insert
-2025-03-10 14:12:57,687 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,702 - __main__ - INFO - Received event: ad348572-a5cd-48d1-b397-be9d840643c4 of type insert
-2025-03-10 14:12:57,742 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,754 - __main__ - INFO - Received event: 1bfce13c-686a-4de9-8542-f7b38b78bded of type insert
-2025-03-10 14:12:57,757 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,805 - __main__ - INFO - Received event: 89617746-bb84-4796-855e-97a7d4ae2e80 of type insert
-2025-03-10 14:12:57,811 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,814 - __main__ - INFO - Received event: 77a15a77-8678-44b4-affe-8b232bbc1a72 of type insert
-2025-03-10 14:12:57,829 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,833 - __main__ - INFO - Received event: 1f5756ae-870e-4022-8605-f35f762b2dcf of type insert
-2025-03-10 14:12:57,854 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,864 - __main__ - INFO - Received event: 81995f6c-6c31-40a1-9f5c-082c47775d3a of type insert
-2025-03-10 14:12:57,867 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,869 - __main__ - INFO - Received event: 303c97e5-6127-4c70-b279-0325b26cb560 of type insert
-2025-03-10 14:12:57,873 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,876 - __main__ - INFO - Received event: b35fb307-342c-4a2d-8548-2f1abd71201d of type insert
-2025-03-10 14:12:57,884 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,885 - __main__ - INFO - Received event: 054b1cfe-491f-4f79-a10a-2814e1169b9c of type insert
-2025-03-10 14:12:57,890 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,892 - __main__ - INFO - Received event: 3f18558f-f07b-4d59-9a82-f92fd7871098 of type insert
-2025-03-10 14:12:57,899 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,901 - __main__ - INFO - Received event: bda7bebb-32f9-465d-9380-8ea919d8d9c2 of type insert
-2025-03-10 14:12:57,905 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,906 - __main__ - INFO - Received event: c05be37e-7ce4-4648-850e-dc0701c03383 of type insert
-2025-03-10 14:12:57,910 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,911 - __main__ - INFO - Received event: 9c99690e-fe92-4495-87b1-a71eac3882ca of type insert
-2025-03-10 14:12:57,914 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,916 - __main__ - INFO - Received event: 801e3040-3566-47b1-8a84-7c6b5aaa2bd0 of type insert
-2025-03-10 14:12:57,920 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,921 - __main__ - INFO - Received event: 49f57392-a1f9-4023-8529-fe48c4a01467 of type insert
-2025-03-10 14:12:57,924 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,925 - __main__ - INFO - Received event: 8090f322-c67e-4095-8c42-912e9a023ef6 of type insert
-2025-03-10 14:12:57,928 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,929 - __main__ - INFO - Received event: df808f6a-26fa-43a6-b444-dc8f1c7fc326 of type insert
-2025-03-10 14:12:57,934 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,935 - __main__ - INFO - Received event: ce338180-80e2-40f0-a52d-e0128a1a4600 of type insert
-2025-03-10 14:12:57,938 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,938 - __main__ - INFO - Received event: 3299a8af-cede-4b4c-b030-27e157dfb55a of type insert
-2025-03-10 14:12:57,941 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,942 - __main__ - INFO - Received event: ff443f55-94db-4780-b9bc-44a3f166b868 of type insert
-2025-03-10 14:12:57,945 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,946 - __main__ - INFO - Received event: 3ea3aaa5-b34f-4c95-991f-07fab60fe987 of type insert
-2025-03-10 14:12:57,949 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,950 - __main__ - INFO - Received event: 95a32e62-4ef5-455d-8d6b-016a945e6d04 of type insert
-2025-03-10 14:12:57,954 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,956 - __main__ - INFO - Received event: 27951814-5880-4e50-92f2-479c48d15b03 of type insert
-2025-03-10 14:12:57,960 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,962 - __main__ - INFO - Received event: e7a160f0-ad88-45a4-ab4b-3c8e55132e30 of type insert
-2025-03-10 14:12:57,964 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,965 - __main__ - INFO - Received event: d19cadc1-081b-443d-8308-3fb885c3897d of type insert
-2025-03-10 14:12:57,968 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,969 - __main__ - INFO - Received event: e4230c51-7504-4836-889d-bff9b41d2c0c of type insert
-2025-03-10 14:12:57,971 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:12:57,972 - __main__ - INFO - Received event: 2f5cc220-cb39-4a09-8750-150722b8d5de of type insert
-2025-03-10 14:12:57,975 - __main__ - ERROR - Error processing event: relation "cdc_events" does not exist
-LINE 2:                 INSERT INTO cdc_events 
-                                    ^
-
-2025-03-10 14:14:32,779 - __main__ - INFO - Consumer shutting down
-2025-03-10 14:14:32,797 - __main__ - INFO - Database connection closed
-2025-03-10 14:14:32,860 - kafka.coordinator - INFO - Stopping heartbeat thread
-2025-03-10 14:14:32,869 - kafka.coordinator - INFO - Leaving consumer group (cdc-processor).
-2025-03-10 14:14:32,945 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
-2025-03-10 14:14:32,947 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
-2025-03-10 14:14:32,955 - __main__ - INFO - Kafka consumer closed
-2025-03-10 14:14:38,504 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
-2025-03-10 14:14:38,506 - kafka.conn - INFO - Probing node bootstrap-0 broker version
-2025-03-10 14:14:38,508 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
-2025-03-10 14:14:38,624 - kafka.conn - INFO - Broker version identified as 2.6.0
-2025-03-10 14:14:38,624 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
-2025-03-10 14:14:38,628 - kafka.consumer.subscription_state - INFO - Updating subscribed topics to: ('cdc-events',)
-2025-03-10 14:14:38,630 - __main__ - INFO - Connected to Kafka, consuming from topic: cdc-events
-2025-03-10 14:14:38,637 - kafka.cluster - INFO - Group coordinator for cdc-processor is BrokerMetadata(nodeId='coordinator-1', host='localhost', port=9092, rack=None)
-2025-03-10 14:14:38,638 - kafka.coordinator - INFO - Discovered coordinator coordinator-1 for group cdc-processor
-2025-03-10 14:14:38,639 - kafka.coordinator - INFO - Starting new heartbeat thread
-2025-03-10 14:14:38,642 - kafka.coordinator.consumer - INFO - Revoking previously assigned partitions set() for group cdc-processor
-2025-03-10 14:14:38,646 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
-2025-03-10 14:14:38,649 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
-2025-03-10 14:14:38,649 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
-2025-03-10 14:14:38,753 - kafka.coordinator - INFO - (Re-)joining group cdc-processor
-2025-03-10 14:14:41,766 - kafka.coordinator - INFO - Elected group leader -- performing partition assignments using range
-2025-03-10 14:14:41,771 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
-2025-03-10 14:14:41,773 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
-2025-03-10 14:14:41,781 - kafka.coordinator - INFO - Successfully joined group cdc-processor with generation 7
-2025-03-10 14:14:41,782 - kafka.consumer.subscription_state - INFO - Updated partition assignment: [TopicPartition(topic='cdc-events', partition=0)]
-2025-03-10 14:14:41,783 - kafka.coordinator.consumer - INFO - Setting newly assigned partitions {TopicPartition(topic='cdc-events', partition=0)} for group cdc-processor
-2025-03-10 14:16:47,393 - __main__ - INFO - Consumer shutting down
-2025-03-10 14:16:47,414 - __main__ - INFO - Database connection closed
-2025-03-10 14:16:47,427 - kafka.coordinator - INFO - Stopping heartbeat thread
-2025-03-10 14:16:47,428 - kafka.coordinator - INFO - Leaving consumer group (cdc-processor).
-2025-03-10 14:16:47,442 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
-2025-03-10 14:16:47,445 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
-2025-03-10 14:16:47,449 - kafka.consumer.fetcher - ERROR - Fetch to node 1 failed: Cancelled: <BrokerConnection node_id=1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>
-2025-03-10 14:16:47,451 - __main__ - INFO - Kafka consumer closed
-2025-03-10 14:18:16,529 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
-2025-03-10 14:18:16,530 - kafka.conn - INFO - Probing node bootstrap-0 broker version
-2025-03-10 14:18:16,532 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
-2025-03-10 14:18:16,645 - kafka.conn - INFO - Broker version identified as 2.6.0
-2025-03-10 14:18:16,646 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
-2025-03-10 14:18:16,655 - kafka.consumer.subscription_state - INFO - Updating subscribed topics to: ('cdc-events',)
-2025-03-10 14:18:16,658 - __main__ - INFO - Connected to Kafka, consuming from topic: cdc-events
-2025-03-10 14:18:16,678 - kafka.cluster - INFO - Group coordinator for cdc-processor is BrokerMetadata(nodeId='coordinator-1', host='localhost', port=9092, rack=None)
-2025-03-10 14:18:16,684 - kafka.coordinator - INFO - Discovered coordinator coordinator-1 for group cdc-processor
-2025-03-10 14:18:16,690 - kafka.coordinator - INFO - Starting new heartbeat thread
-2025-03-10 14:18:16,696 - kafka.coordinator.consumer - INFO - Revoking previously assigned partitions set() for group cdc-processor
-2025-03-10 14:18:16,698 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
-2025-03-10 14:18:16,701 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
-2025-03-10 14:18:16,702 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
-2025-03-10 14:18:16,805 - kafka.coordinator - INFO - (Re-)joining group cdc-processor
-2025-03-10 14:18:19,819 - kafka.coordinator - INFO - Elected group leader -- performing partition assignments using range
-2025-03-10 14:18:19,822 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
-2025-03-10 14:18:19,823 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
-2025-03-10 14:18:19,834 - kafka.coordinator - INFO - Successfully joined group cdc-processor with generation 9
-2025-03-10 14:18:19,835 - kafka.consumer.subscription_state - INFO - Updated partition assignment: [TopicPartition(topic='cdc-events', partition=0)]
-2025-03-10 14:18:19,837 - kafka.coordinator.consumer - INFO - Setting newly assigned partitions {TopicPartition(topic='cdc-events', partition=0)} for group cdc-processor
-2025-03-10 14:19:02,739 - __main__ - INFO - Received event: bd7a097a-5da1-4343-a915-2236495b1c76 of type update
-2025-03-10 14:19:02,834 - __main__ - INFO - Processed event bd7a097a-5da1-4343-a915-2236495b1c76 of type update
-2025-03-10 14:19:03,315 - __main__ - INFO - Generated parquet file: ./data/parquet/Ratios-TTM/temp_Ratios-TTM_14d7af34/update_20250310141902_so-financials.parquet
-2025-03-10 14:19:03,333 - __main__ - INFO - Received event: db762399-dae0-4448-b00b-9aefcc1be1ea of type update
-2025-03-10 14:19:03,357 - __main__ - INFO - Processed event db762399-dae0-4448-b00b-9aefcc1be1ea of type update
-2025-03-10 14:19:03,556 - __main__ - INFO - Generated parquet file: ./data/parquet/Ratios-TTM/temp_Ratios-TTM_14d7af34/update_20250310141902_aep-financials.parquet
-2025-03-10 14:19:03,561 - __main__ - INFO - Received event: 722359c3-aae1-47af-94da-6110570190de of type update
-2025-03-10 14:19:03,590 - __main__ - INFO - Processed event 722359c3-aae1-47af-94da-6110570190de of type update
-2025-03-10 14:19:03,772 - __main__ - INFO - Generated parquet file: ./data/parquet/Ratios-TTM/temp_Ratios-TTM_14d7af34/update_20250310141902_nee-financials.parquet
-2025-03-10 14:19:03,775 - __main__ - INFO - Received event: 5ebe816c-17b9-4670-853f-10c7fcf0e33a of type update
-2025-03-10 14:19:03,791 - __main__ - INFO - Processed event 5ebe816c-17b9-4670-853f-10c7fcf0e33a of type update
-2025-03-10 14:19:04,098 - __main__ - INFO - Generated parquet file: ./data/parquet/Ratios-TTM/temp_Ratios-TTM_14d7af34/update_20250310141902_duk-financials.parquet
-2025-03-10 14:19:04,101 - __main__ - INFO - Received event: 69d710d1-e877-49af-912a-5773d0cebbf2 of type update
-2025-03-10 14:19:04,126 - __main__ - INFO - Processed event 69d710d1-e877-49af-912a-5773d0cebbf2 of type update
-2025-03-10 14:19:04,354 - __main__ - INFO - Generated parquet file: ./data/parquet/Ratios-TTM/temp_Ratios-TTM_14d7af34/update_20250310141902_ngg-financials.parquet
+2025-03-15 00:02:51,127 - __main__ - INFO - Consumer shutting down
+2025-03-15 00:02:51,131 - __main__ - INFO - Database connection closed
+2025-03-15 00:02:51,135 - kafka.coordinator - INFO - Stopping heartbeat thread
+2025-03-15 00:02:51,136 - kafka.coordinator - INFO - Leaving consumer group (cdc-processor).
+2025-03-15 00:02:51,142 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-15 00:02:51,144 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-15 00:02:51,145 - kafka.consumer.fetcher - ERROR - Fetch to node 1 failed: Cancelled: <BrokerConnection node_id=1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>
+2025-03-15 00:02:51,145 - __main__ - INFO - Kafka consumer closed
+2025-03-15 00:02:51,146 - py4j.clientserver - INFO - Closing down clientserver connection
+2025-03-15 00:02:53,481 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 00:02:53,481 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 00:02:53,482 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 00:02:53,584 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 00:02:53,584 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 00:02:53,585 - kafka.consumer.subscription_state - INFO - Updating subscribed topics to: ('cdc-events',)
+2025-03-15 00:02:53,586 - __main__ - INFO - Connected to Kafka, consuming from topic: cdc-events
+2025-03-15 00:02:53,589 - kafka.cluster - INFO - Group coordinator for cdc-processor is BrokerMetadata(nodeId='coordinator-1', host='localhost', port=9092, rack=None)
+2025-03-15 00:02:53,590 - kafka.coordinator - INFO - Discovered coordinator coordinator-1 for group cdc-processor
+2025-03-15 00:02:53,590 - kafka.coordinator - INFO - Starting new heartbeat thread
+2025-03-15 00:02:53,590 - kafka.coordinator.consumer - INFO - Revoking previously assigned partitions set() for group cdc-processor
+2025-03-15 00:02:53,591 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 00:02:53,592 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 00:02:53,592 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-15 00:02:53,693 - kafka.coordinator - INFO - (Re-)joining group cdc-processor
+2025-03-15 00:02:56,697 - kafka.coordinator - INFO - Elected group leader -- performing partition assignments using range
+2025-03-15 00:02:56,698 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 00:02:56,699 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 00:02:56,701 - kafka.coordinator - INFO - Successfully joined group cdc-processor with generation 27
+2025-03-15 00:02:56,701 - kafka.consumer.subscription_state - INFO - Updated partition assignment: [TopicPartition(topic='cdc-events', partition=0)]
+2025-03-15 00:02:56,701 - kafka.coordinator.consumer - INFO - Setting newly assigned partitions {TopicPartition(topic='cdc-events', partition=0)} for group cdc-processor
+2025-03-15 00:03:16,591 - __main__ - INFO - Received event: 785caabc-8efe-459c-b152-f3281be06507 of type update
+2025-03-15 00:03:16,601 - __main__ - INFO - Processed event 785caabc-8efe-459c-b152-f3281be06507 of type update
+2025-03-15 00:03:23,152 - __main__ - ERROR - Error with Delta processing: Failed to create Spark session
+2025-03-15 00:03:23,152 - __main__ - INFO - Falling back to parquet storage
+2025-03-15 00:03:23,206 - __main__ - INFO - Saved event data to parquet: ./data/parquet/123/balance/so-financials_20250315000323.parquet
+2025-03-15 00:03:23,207 - __main__ - INFO - Received event: 1264b225-c215-4f3f-bcc3-93592481fe0b of type update
+2025-03-15 00:03:23,214 - __main__ - INFO - Processed event 1264b225-c215-4f3f-bcc3-93592481fe0b of type update
+2025-03-15 00:03:27,850 - __main__ - ERROR - Error with Delta processing: Failed to create Spark session
+2025-03-15 00:03:27,850 - __main__ - INFO - Falling back to parquet storage
+2025-03-15 00:03:27,882 - __main__ - INFO - Saved event data to parquet: ./data/parquet/123/balance/aep-financials_20250315000327.parquet
+2025-03-15 00:03:27,885 - __main__ - INFO - Received event: 0d233228-97da-4741-a786-3201ef5ce7e3 of type update
+2025-03-15 00:03:27,890 - __main__ - INFO - Processed event 0d233228-97da-4741-a786-3201ef5ce7e3 of type update
+2025-03-15 00:03:34,539 - __main__ - ERROR - Error with Delta processing: Failed to create Spark session
+2025-03-15 00:03:34,539 - __main__ - INFO - Falling back to parquet storage
+2025-03-15 00:03:34,587 - __main__ - INFO - Saved event data to parquet: ./data/parquet/123/balance/nee-financials_20250315000334.parquet
+2025-03-15 00:03:34,588 - __main__ - INFO - Received event: cd593335-fd20-4123-804b-3cb8bc1c0c7e of type update
+2025-03-15 00:03:34,593 - __main__ - INFO - Processed event cd593335-fd20-4123-804b-3cb8bc1c0c7e of type update
+2025-03-15 00:03:39,330 - __main__ - ERROR - Error with Delta processing: Failed to create Spark session
+2025-03-15 00:03:39,331 - __main__ - INFO - Falling back to parquet storage
+2025-03-15 00:03:39,401 - __main__ - INFO - Saved event data to parquet: ./data/parquet/123/balance/duk-financials_20250315000339.parquet
+2025-03-15 00:03:39,402 - __main__ - INFO - Received event: eb8621b9-e34f-406e-8767-e06e9ce05e56 of type update
+2025-03-15 00:03:39,408 - __main__ - INFO - Processed event eb8621b9-e34f-406e-8767-e06e9ce05e56 of type update
+2025-03-15 00:03:45,145 - __main__ - ERROR - Error with Delta processing: Failed to create Spark session
+2025-03-15 00:03:45,146 - __main__ - INFO - Falling back to parquet storage
+2025-03-15 00:03:45,173 - __main__ - INFO - Saved event data to parquet: ./data/parquet/123/balance/ngg-financials_20250315000345.parquet
+2025-03-15 00:04:21,269 - __main__ - INFO - Consumer shutting down
+2025-03-15 00:04:21,271 - __main__ - INFO - Database connection closed
+2025-03-15 00:04:21,277 - kafka.coordinator - INFO - Stopping heartbeat thread
+2025-03-15 00:04:21,278 - kafka.coordinator - INFO - Leaving consumer group (cdc-processor).
+2025-03-15 00:04:21,288 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-15 00:04:21,290 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-15 00:04:21,292 - kafka.consumer.fetcher - ERROR - Fetch to node 1 failed: Cancelled: <BrokerConnection node_id=1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>
+2025-03-15 00:04:21,293 - __main__ - INFO - Kafka consumer closed
+2025-03-15 00:04:23,831 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 00:04:23,831 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 00:04:23,832 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 00:04:23,935 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 00:04:23,935 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 00:04:23,936 - kafka.consumer.subscription_state - INFO - Updating subscribed topics to: ('cdc-events',)
+2025-03-15 00:04:23,936 - __main__ - INFO - Connected to Kafka, consuming from topic: cdc-events
+2025-03-15 00:04:23,941 - kafka.cluster - INFO - Group coordinator for cdc-processor is BrokerMetadata(nodeId='coordinator-1', host='localhost', port=9092, rack=None)
+2025-03-15 00:04:23,942 - kafka.coordinator - INFO - Discovered coordinator coordinator-1 for group cdc-processor
+2025-03-15 00:04:23,942 - kafka.coordinator - INFO - Starting new heartbeat thread
+2025-03-15 00:04:23,943 - kafka.coordinator.consumer - INFO - Revoking previously assigned partitions set() for group cdc-processor
+2025-03-15 00:04:23,944 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 00:04:23,945 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 00:04:23,946 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-15 00:04:24,047 - kafka.coordinator - INFO - (Re-)joining group cdc-processor
+2025-03-15 00:04:27,050 - kafka.coordinator - INFO - Elected group leader -- performing partition assignments using range
+2025-03-15 00:04:27,051 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 00:04:27,052 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 00:04:27,053 - kafka.coordinator - INFO - Successfully joined group cdc-processor with generation 29
+2025-03-15 00:04:27,055 - kafka.consumer.subscription_state - INFO - Updated partition assignment: [TopicPartition(topic='cdc-events', partition=0)]
+2025-03-15 00:04:27,059 - kafka.coordinator.consumer - INFO - Setting newly assigned partitions {TopicPartition(topic='cdc-events', partition=0)} for group cdc-processor
+2025-03-15 00:05:04,928 - __main__ - INFO - Received event: fd8d0c4e-bb1f-4c85-9a53-a94c03e31d26 of type update
+2025-03-15 00:05:04,939 - __main__ - INFO - Processed event fd8d0c4e-bb1f-4c85-9a53-a94c03e31d26 of type update
+2025-03-15 00:05:17,263 - __main__ - ERROR - Error with Delta processing: Delta table `data/delta/123/balance/delta_table` doesn't exist.
+2025-03-15 00:05:17,263 - __main__ - INFO - Falling back to parquet storage
+2025-03-15 00:05:17,319 - __main__ - INFO - Saved event data to parquet: ./data/parquet/123/balance/so-financials_20250315000517.parquet
+2025-03-15 00:05:17,319 - __main__ - INFO - Received event: cd988751-79ce-4115-a43c-4fb418db43e8 of type update
+2025-03-15 00:05:17,328 - __main__ - INFO - Processed event cd988751-79ce-4115-a43c-4fb418db43e8 of type update
+2025-03-15 00:05:17,592 - __main__ - ERROR - Error with Delta processing: Delta table `data/delta/123/balance/delta_table` doesn't exist.
+2025-03-15 00:05:17,592 - __main__ - INFO - Falling back to parquet storage
+2025-03-15 00:05:17,625 - __main__ - INFO - Saved event data to parquet: ./data/parquet/123/balance/aep-financials_20250315000517.parquet
+2025-03-15 00:05:17,635 - __main__ - INFO - Received event: f92f66b9-f6aa-44e6-ad33-40f19fe5b13f of type update
+2025-03-15 00:05:17,642 - __main__ - INFO - Processed event f92f66b9-f6aa-44e6-ad33-40f19fe5b13f of type update
+2025-03-15 00:05:17,878 - __main__ - ERROR - Error with Delta processing: Delta table `data/delta/123/balance/delta_table` doesn't exist.
+2025-03-15 00:05:17,878 - __main__ - INFO - Falling back to parquet storage
+2025-03-15 00:05:17,907 - __main__ - INFO - Saved event data to parquet: ./data/parquet/123/balance/nee-financials_20250315000517.parquet
+2025-03-15 00:05:17,907 - __main__ - INFO - Received event: 2b011add-b130-4c50-80aa-54e9099a4b3b of type update
+2025-03-15 00:05:17,912 - __main__ - INFO - Processed event 2b011add-b130-4c50-80aa-54e9099a4b3b of type update
+2025-03-15 00:05:18,116 - __main__ - ERROR - Error with Delta processing: Delta table `data/delta/123/balance/delta_table` doesn't exist.
+2025-03-15 00:05:18,116 - __main__ - INFO - Falling back to parquet storage
+2025-03-15 00:05:18,144 - __main__ - INFO - Saved event data to parquet: ./data/parquet/123/balance/duk-financials_20250315000518.parquet
+2025-03-15 00:05:18,144 - __main__ - INFO - Received event: 02f24ba6-e011-46d6-a2e1-27ca3c7bff52 of type update
+2025-03-15 00:05:18,147 - __main__ - INFO - Processed event 02f24ba6-e011-46d6-a2e1-27ca3c7bff52 of type update
+2025-03-15 00:05:18,354 - __main__ - ERROR - Error with Delta processing: Delta table `data/delta/123/balance/delta_table` doesn't exist.
+2025-03-15 00:05:18,354 - __main__ - INFO - Falling back to parquet storage
+2025-03-15 00:05:18,380 - __main__ - INFO - Saved event data to parquet: ./data/parquet/123/balance/ngg-financials_20250315000518.parquet
+2025-03-15 00:43:26,654 - __main__ - INFO - Consumer shutting down
+2025-03-15 00:43:26,677 - __main__ - INFO - Database connection closed
+2025-03-15 00:43:26,679 - kafka.coordinator - INFO - Stopping heartbeat thread
+2025-03-15 00:43:26,679 - kafka.coordinator - INFO - Leaving consumer group (cdc-processor).
+2025-03-15 00:43:26,688 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-15 00:43:26,688 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-15 00:43:26,689 - kafka.consumer.fetcher - ERROR - Fetch to node 1 failed: Cancelled: <BrokerConnection node_id=1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>
+2025-03-15 00:43:26,689 - __main__ - INFO - Kafka consumer closed
+2025-03-15 00:43:26,692 - py4j.clientserver - INFO - Closing down clientserver connection
+2025-03-15 00:43:32,438 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 00:43:32,438 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 00:43:32,439 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 00:43:32,542 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 00:43:32,542 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 00:43:32,543 - kafka.consumer.subscription_state - INFO - Updating subscribed topics to: ('cdc-events',)
+2025-03-15 00:43:32,543 - __main__ - INFO - Connected to Kafka, consuming from topic: cdc-events
+2025-03-15 00:43:32,546 - kafka.cluster - INFO - Group coordinator for cdc-processor is BrokerMetadata(nodeId='coordinator-1', host='localhost', port=9092, rack=None)
+2025-03-15 00:43:32,547 - kafka.coordinator - INFO - Discovered coordinator coordinator-1 for group cdc-processor
+2025-03-15 00:43:32,547 - kafka.coordinator - INFO - Starting new heartbeat thread
+2025-03-15 00:43:32,548 - kafka.coordinator.consumer - INFO - Revoking previously assigned partitions set() for group cdc-processor
+2025-03-15 00:43:32,548 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 00:43:32,549 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 00:43:32,550 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-15 00:43:32,651 - kafka.coordinator - INFO - (Re-)joining group cdc-processor
+2025-03-15 00:43:35,669 - kafka.coordinator - INFO - Elected group leader -- performing partition assignments using range
+2025-03-15 00:43:35,670 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 00:43:35,671 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 00:43:35,676 - kafka.coordinator - INFO - Successfully joined group cdc-processor with generation 31
+2025-03-15 00:43:35,676 - kafka.consumer.subscription_state - INFO - Updated partition assignment: [TopicPartition(topic='cdc-events', partition=0)]
+2025-03-15 00:43:35,677 - kafka.coordinator.consumer - INFO - Setting newly assigned partitions {TopicPartition(topic='cdc-events', partition=0)} for group cdc-processor
+2025-03-15 00:44:22,491 - __main__ - INFO - Received event: ceacdca4-f88b-493e-a27e-2989c8a8c8cc of type update
+2025-03-15 00:44:22,521 - __main__ - INFO - Processed event ceacdca4-f88b-493e-a27e-2989c8a8c8cc of type update
+2025-03-15 00:45:06,250 - __main__ - INFO - Successfully created/updated Delta table for 123/balance
+2025-03-15 00:45:06,253 - __main__ - INFO - Received event: 0cabe715-5f76-448b-8ecc-87e5de8e9ebf of type update
+2025-03-15 00:45:06,267 - __main__ - INFO - Processed event 0cabe715-5f76-448b-8ecc-87e5de8e9ebf of type update
+2025-03-15 00:45:23,987 - __main__ - INFO - Successfully created/updated Delta table for 123/balance
+2025-03-15 00:45:23,989 - __main__ - INFO - Received event: d8b9e8d2-14f5-445a-b6b5-8c2c82ba2a81 of type update
+2025-03-15 00:45:24,003 - __main__ - INFO - Processed event d8b9e8d2-14f5-445a-b6b5-8c2c82ba2a81 of type update
+2025-03-15 00:45:38,640 - __main__ - INFO - Successfully created/updated Delta table for 123/balance
+2025-03-15 00:45:38,643 - __main__ - INFO - Received event: 2330a0cf-fbef-40a6-aa5b-ac29acb8ec5a of type update
+2025-03-15 00:45:38,657 - __main__ - INFO - Processed event 2330a0cf-fbef-40a6-aa5b-ac29acb8ec5a of type update
+2025-03-15 00:45:53,852 - __main__ - INFO - Successfully created/updated Delta table for 123/balance
+2025-03-15 00:45:53,855 - __main__ - INFO - Received event: 2e0b4a6e-ebab-400c-be84-b22bf750a1d4 of type update
+2025-03-15 00:45:53,862 - __main__ - INFO - Processed event 2e0b4a6e-ebab-400c-be84-b22bf750a1d4 of type update
+2025-03-15 00:46:07,298 - __main__ - INFO - Successfully created/updated Delta table for 123/balance
+2025-03-15 01:41:41,587 - __main__ - INFO - Consumer shutting down
+2025-03-15 01:41:41,611 - __main__ - INFO - Database connection closed
+2025-03-15 01:41:41,613 - kafka.coordinator - INFO - Stopping heartbeat thread
+2025-03-15 01:41:41,614 - kafka.coordinator - INFO - Leaving consumer group (cdc-processor).
+2025-03-15 01:41:41,617 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-15 01:41:41,618 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-15 01:41:41,618 - kafka.consumer.fetcher - ERROR - Fetch to node 1 failed: Cancelled: <BrokerConnection node_id=1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>
+2025-03-15 01:41:41,618 - __main__ - INFO - Kafka consumer closed
+2025-03-15 01:41:41,621 - py4j.clientserver - INFO - Closing down clientserver connection
+2025-03-15 01:41:44,148 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 01:41:44,149 - kafka.conn - INFO - Probing node bootstrap-0 broker version
+2025-03-15 01:41:44,151 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 01:41:44,256 - kafka.conn - INFO - Broker version identified as 2.6.0
+2025-03-15 01:41:44,256 - kafka.conn - INFO - Set configuration api_version=(2, 6, 0) to skip auto check_version requests on startup
+2025-03-15 01:41:44,257 - kafka.consumer.subscription_state - INFO - Updating subscribed topics to: ('cdc-events',)
+2025-03-15 01:41:44,257 - __main__ - INFO - Connected to Kafka, consuming from topic: cdc-events
+2025-03-15 01:41:44,261 - kafka.cluster - INFO - Group coordinator for cdc-processor is BrokerMetadata(nodeId='coordinator-1', host='localhost', port=9092, rack=None)
+2025-03-15 01:41:44,261 - kafka.coordinator - INFO - Discovered coordinator coordinator-1 for group cdc-processor
+2025-03-15 01:41:44,262 - kafka.coordinator - INFO - Starting new heartbeat thread
+2025-03-15 01:41:44,263 - kafka.coordinator.consumer - INFO - Revoking previously assigned partitions set() for group cdc-processor
+2025-03-15 01:41:44,263 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 01:41:44,264 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 01:41:44,265 - kafka.conn - INFO - <BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-15 01:41:44,366 - kafka.coordinator - INFO - (Re-)joining group cdc-processor
+2025-03-15 01:41:47,373 - kafka.coordinator - INFO - Elected group leader -- performing partition assignments using range
+2025-03-15 01:41:47,375 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-15 01:41:47,382 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+2025-03-15 01:41:47,383 - kafka.coordinator - INFO - Successfully joined group cdc-processor with generation 33
+2025-03-15 01:41:47,384 - kafka.consumer.subscription_state - INFO - Updated partition assignment: [TopicPartition(topic='cdc-events', partition=0)]
+2025-03-15 01:41:47,385 - kafka.coordinator.consumer - INFO - Setting newly assigned partitions {TopicPartition(topic='cdc-events', partition=0)} for group cdc-processor
+2025-03-15 01:42:46,261 - __main__ - INFO - Received event: 62febde1-daf2-460a-bf5d-3e415e5019b5 of type update
+2025-03-15 01:42:46,327 - __main__ - INFO - Processed event 62febde1-daf2-460a-bf5d-3e415e5019b5 of type update
+2025-03-15 01:42:46,328 - __main__ - INFO - Azure Data Lake storage is disabled. Falling back to local Delta Lake processing.
+2025-03-15 01:44:03,230 - py4j.clientserver - INFO - Error while receiving.
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+                          ^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: reentrant call inside <_io.BufferedReader name=10>
+2025-03-15 01:44:03,239 - py4j.clientserver - INFO - Closing down clientserver connection
+2025-03-15 01:44:03,240 - root - ERROR - Exception while sending command.
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+                          ^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: reentrant call inside <_io.BufferedReader name=10>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 539, in send_command
+    raise Py4JNetworkError(
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+2025-03-15 01:44:03,252 - py4j.clientserver - INFO - Error while receiving.
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socket.py", line 720, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/context.py", line 377, in signal_handler
+    self.cancelAllJobs()
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/context.py", line 2255, in cancelAllJobs
+    self._jsc.sc().cancelAllJobs()
+    ^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+                   ^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/errors/exceptions/captured.py", line 169, in deco
+    return f(*a, **kw)
+           ^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/protocol.py", line 334, in get_return_value
+    raise Py4JError(
+py4j.protocol.Py4JError: An error occurred while calling o22.sc
+2025-03-15 01:44:03,262 - py4j.clientserver - INFO - Closing down clientserver connection
+2025-03-15 01:44:03,263 - root - ERROR - Exception while sending command.
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socket.py", line 720, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/context.py", line 377, in signal_handler
+    self.cancelAllJobs()
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/context.py", line 2255, in cancelAllJobs
+    self._jsc.sc().cancelAllJobs()
+    ^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+                   ^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/errors/exceptions/captured.py", line 169, in deco
+    return f(*a, **kw)
+           ^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/protocol.py", line 334, in get_return_value
+    raise Py4JError(
+py4j.protocol.Py4JError: An error occurred while calling o22.sc
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 539, in send_command
+    raise Py4JNetworkError(
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+2025-03-15 01:44:03,264 - py4j.clientserver - INFO - Closing down clientserver connection
+2025-03-15 01:44:03,267 - __main__ - INFO - Successfully created/updated Delta table for 123/balance
+2025-03-15 01:44:03,282 - __main__ - INFO - Received event: b91bcf20-0ca0-43c3-bf33-8b26af429736 of type update
+2025-03-15 01:44:03,304 - __main__ - INFO - Processed event b91bcf20-0ca0-43c3-bf33-8b26af429736 of type update
+2025-03-15 01:44:03,305 - __main__ - INFO - Azure Data Lake storage is disabled. Falling back to local Delta Lake processing.
+2025-03-15 01:44:04,102 - py4j.clientserver - INFO - Error while receiving.
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+                          ^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: reentrant call inside <_io.BufferedReader name=10>
+2025-03-15 01:44:04,103 - py4j.clientserver - INFO - Closing down clientserver connection
+2025-03-15 01:44:04,104 - root - ERROR - Exception while sending command.
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+                          ^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: reentrant call inside <_io.BufferedReader name=10>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 539, in send_command
+    raise Py4JNetworkError(
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+2025-03-15 01:44:04,104 - py4j.clientserver - INFO - Error while receiving.
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socket.py", line 720, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/context.py", line 377, in signal_handler
+    self.cancelAllJobs()
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/context.py", line 2255, in cancelAllJobs
+    self._jsc.sc().cancelAllJobs()
+    ^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+                   ^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/errors/exceptions/captured.py", line 169, in deco
+    return f(*a, **kw)
+           ^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/protocol.py", line 334, in get_return_value
+    raise Py4JError(
+py4j.protocol.Py4JError: An error occurred while calling o22.sc
+2025-03-15 01:44:04,112 - py4j.clientserver - INFO - Closing down clientserver connection
+2025-03-15 01:44:04,113 - root - ERROR - Exception while sending command.
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socket.py", line 720, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/context.py", line 377, in signal_handler
+    self.cancelAllJobs()
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/context.py", line 2255, in cancelAllJobs
+    self._jsc.sc().cancelAllJobs()
+    ^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+                   ^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/errors/exceptions/captured.py", line 169, in deco
+    return f(*a, **kw)
+           ^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/protocol.py", line 334, in get_return_value
+    raise Py4JError(
+py4j.protocol.Py4JError: An error occurred while calling o22.sc
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 539, in send_command
+    raise Py4JNetworkError(
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+2025-03-15 01:44:04,119 - py4j.clientserver - INFO - Closing down clientserver connection
+2025-03-15 01:44:04,119 - __main__ - ERROR - Error with Delta processing: An error occurred while calling o108.update
+2025-03-15 01:44:04,120 - __main__ - INFO - Falling back to parquet storage
+2025-03-15 01:44:04,267 - __main__ - INFO - Saved event data to parquet: ./data/parquet/123/balance/aep-financials_20250315014404.parquet
+2025-03-15 01:44:04,270 - __main__ - INFO - Received event: 3be01c64-7235-4356-9546-c74669cf9f5a of type update
+2025-03-15 01:44:04,288 - __main__ - INFO - Processed event 3be01c64-7235-4356-9546-c74669cf9f5a of type update
+2025-03-15 01:44:04,289 - __main__ - INFO - Azure Data Lake storage is disabled. Falling back to local Delta Lake processing.
+2025-03-15 01:44:04,600 - py4j.clientserver - INFO - Error while receiving.
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+                          ^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: reentrant call inside <_io.BufferedReader name=10>
+2025-03-15 01:44:04,603 - py4j.clientserver - INFO - Closing down clientserver connection
+2025-03-15 01:44:04,604 - root - ERROR - Exception while sending command.
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+                          ^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: reentrant call inside <_io.BufferedReader name=10>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 539, in send_command
+    raise Py4JNetworkError(
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+2025-03-15 01:44:04,607 - py4j.clientserver - INFO - Error while receiving.
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socket.py", line 720, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/context.py", line 377, in signal_handler
+    self.cancelAllJobs()
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/context.py", line 2255, in cancelAllJobs
+    self._jsc.sc().cancelAllJobs()
+    ^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+                   ^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/errors/exceptions/captured.py", line 169, in deco
+    return f(*a, **kw)
+           ^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/protocol.py", line 334, in get_return_value
+    raise Py4JError(
+py4j.protocol.Py4JError: An error occurred while calling o22.sc
+2025-03-15 01:44:04,608 - py4j.clientserver - INFO - Closing down clientserver connection
+2025-03-15 01:44:04,608 - root - ERROR - Exception while sending command.
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socket.py", line 720, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/context.py", line 377, in signal_handler
+    self.cancelAllJobs()
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/context.py", line 2255, in cancelAllJobs
+    self._jsc.sc().cancelAllJobs()
+    ^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+                   ^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/errors/exceptions/captured.py", line 169, in deco
+    return f(*a, **kw)
+           ^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/protocol.py", line 334, in get_return_value
+    raise Py4JError(
+py4j.protocol.Py4JError: An error occurred while calling o22.sc
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 539, in send_command
+    raise Py4JNetworkError(
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+2025-03-15 01:44:04,610 - py4j.clientserver - INFO - Closing down clientserver connection
+2025-03-15 01:44:04,610 - __main__ - ERROR - Error with Delta processing: An error occurred while calling o137.update
+2025-03-15 01:44:04,610 - __main__ - INFO - Falling back to parquet storage
+2025-03-15 01:44:04,662 - __main__ - INFO - Saved event data to parquet: ./data/parquet/123/balance/nee-financials_20250315014404.parquet
+2025-03-15 01:44:04,664 - __main__ - INFO - Received event: a3a38714-90b4-4733-a2cd-04324db8fe7e of type update
+2025-03-15 01:44:04,674 - __main__ - INFO - Processed event a3a38714-90b4-4733-a2cd-04324db8fe7e of type update
+2025-03-15 01:44:04,674 - __main__ - INFO - Azure Data Lake storage is disabled. Falling back to local Delta Lake processing.
+2025-03-15 01:44:06,072 - py4j.clientserver - INFO - Error while receiving.
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+                          ^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: reentrant call inside <_io.BufferedReader name=10>
+2025-03-15 01:44:06,075 - py4j.clientserver - INFO - Closing down clientserver connection
+2025-03-15 01:44:06,075 - root - ERROR - Exception while sending command.
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+                          ^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: reentrant call inside <_io.BufferedReader name=10>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 539, in send_command
+    raise Py4JNetworkError(
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+2025-03-15 01:44:06,077 - py4j.clientserver - INFO - Error while receiving.
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socket.py", line 720, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/context.py", line 377, in signal_handler
+    self.cancelAllJobs()
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/context.py", line 2255, in cancelAllJobs
+    self._jsc.sc().cancelAllJobs()
+    ^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+                   ^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/errors/exceptions/captured.py", line 169, in deco
+    return f(*a, **kw)
+           ^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/protocol.py", line 334, in get_return_value
+    raise Py4JError(
+py4j.protocol.Py4JError: An error occurred while calling o22.sc
+2025-03-15 01:44:06,079 - py4j.clientserver - INFO - Closing down clientserver connection
+2025-03-15 01:44:06,080 - root - ERROR - Exception while sending command.
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socket.py", line 720, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/context.py", line 377, in signal_handler
+    self.cancelAllJobs()
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/context.py", line 2255, in cancelAllJobs
+    self._jsc.sc().cancelAllJobs()
+    ^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+                   ^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/errors/exceptions/captured.py", line 169, in deco
+    return f(*a, **kw)
+           ^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/protocol.py", line 334, in get_return_value
+    raise Py4JError(
+py4j.protocol.Py4JError: An error occurred while calling o22.sc
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 539, in send_command
+    raise Py4JNetworkError(
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+2025-03-15 01:44:06,082 - py4j.clientserver - INFO - Closing down clientserver connection
+2025-03-15 01:44:06,083 - __main__ - ERROR - Error with Delta processing: An error occurred while calling o166.update
+2025-03-15 01:44:06,083 - __main__ - INFO - Falling back to parquet storage
+2025-03-15 01:44:06,170 - __main__ - INFO - Saved event data to parquet: ./data/parquet/123/balance/duk-financials_20250315014406.parquet
+2025-03-15 01:44:06,172 - __main__ - INFO - Received event: 0240daf4-c795-46d1-8d24-4f9455125f7c of type update
+2025-03-15 01:44:06,177 - __main__ - INFO - Processed event 0240daf4-c795-46d1-8d24-4f9455125f7c of type update
+2025-03-15 01:44:06,179 - __main__ - INFO - Azure Data Lake storage is disabled. Falling back to local Delta Lake processing.
+2025-03-15 01:44:06,900 - py4j.clientserver - INFO - Error while receiving.
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+                          ^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: reentrant call inside <_io.BufferedReader name=10>
+2025-03-15 01:44:06,902 - py4j.clientserver - INFO - Closing down clientserver connection
+2025-03-15 01:44:06,905 - root - ERROR - Exception while sending command.
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+                          ^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: reentrant call inside <_io.BufferedReader name=10>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 539, in send_command
+    raise Py4JNetworkError(
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+2025-03-15 01:44:06,909 - py4j.clientserver - INFO - Error while receiving.
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socket.py", line 720, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/context.py", line 377, in signal_handler
+    self.cancelAllJobs()
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/context.py", line 2255, in cancelAllJobs
+    self._jsc.sc().cancelAllJobs()
+    ^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+                   ^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/errors/exceptions/captured.py", line 169, in deco
+    return f(*a, **kw)
+           ^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/protocol.py", line 334, in get_return_value
+    raise Py4JError(
+py4j.protocol.Py4JError: An error occurred while calling o22.sc
+2025-03-15 01:44:06,914 - py4j.clientserver - INFO - Closing down clientserver connection
+2025-03-15 01:44:06,914 - root - ERROR - Exception while sending command.
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socket.py", line 720, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/context.py", line 377, in signal_handler
+    self.cancelAllJobs()
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/context.py", line 2255, in cancelAllJobs
+    self._jsc.sc().cancelAllJobs()
+    ^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+                   ^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/pyspark/errors/exceptions/captured.py", line 169, in deco
+    return f(*a, **kw)
+           ^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/protocol.py", line 334, in get_return_value
+    raise Py4JError(
+py4j.protocol.Py4JError: An error occurred while calling o22.sc
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/muhammadadil/.virtualenvs/myenv/lib/python3.12/site-packages/py4j/clientserver.py", line 539, in send_command
+    raise Py4JNetworkError(
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+2025-03-15 01:44:06,918 - py4j.clientserver - INFO - Closing down clientserver connection
+2025-03-15 01:44:06,918 - __main__ - ERROR - Error with Delta processing: An error occurred while calling o195.update
+2025-03-15 01:44:06,919 - __main__ - INFO - Falling back to parquet storage
+2025-03-15 01:44:06,974 - __main__ - INFO - Saved event data to parquet: ./data/parquet/123/balance/ngg-financials_20250315014406.parquet
+2025-03-15 01:45:07,699 - __main__ - INFO - Consumer shutting down
+2025-03-15 01:45:07,718 - __main__ - INFO - Database connection closed
+2025-03-15 01:45:07,720 - kafka.coordinator - INFO - Stopping heartbeat thread
+2025-03-15 01:45:07,720 - kafka.coordinator - INFO - Leaving consumer group (cdc-processor).
+2025-03-15 01:45:07,723 - kafka.conn - INFO - <BrokerConnection node_id=coordinator-1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-15 01:45:07,724 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-15 01:45:07,724 - kafka.consumer.fetcher - ERROR - Fetch to node 1 failed: Cancelled: <BrokerConnection node_id=1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>
+2025-03-15 01:45:07,724 - __main__ - INFO - Kafka consumer closed
+2025-03-15 01:45:07,729 - py4j.clientserver - INFO - Closing down clientserver connection

@@ -1,5 +1,4 @@
-# File: app.py
-from fastapi import FastAPI, File, UploadFile, BackgroundTasks, HTTPException
+from fastapi import FastAPI, File, UploadFile,Form, BackgroundTasks, HTTPException, Depends
 from fastapi.responses import JSONResponse
 import pandas as pd
 import os
@@ -7,14 +6,17 @@ import json
 import uuid
 import logging
 from datetime import datetime
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, Literal
 from kafka import KafkaProducer
 import hashlib
 import shutil
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, validator
 from logging.handlers import TimedRotatingFileHandler
+from dotenv import load_dotenv
 
-# Set up logging
+# Load environment variables
+load_dotenv()
+
 # Set up logging
 logs_dir = os.path.join(os.getcwd(), "logs")
 os.makedirs(logs_dir, exist_ok=True)
@@ -44,6 +46,11 @@ KAFKA_TOPIC = os.environ.get("KAFKA_TOPIC", "cdc-events")
 os.makedirs(DATA_DIR, exist_ok=True)
 os.makedirs(ARCHIVE_DIR, exist_ok=True)
 os.makedirs(CURRENT_DIR, exist_ok=True)
+
+# Define supported table types
+SUPPORTED_TABLE_TYPES = [
+    "Asset", "Location", "WorkOrder", "PreventiveMaintenance", "PurchaseOrder"
+]
 
 app = FastAPI(title="Excel CDC Data Ingestion API")
 
@@ -77,7 +84,18 @@ class ProcessingResponse(BaseModel):
     message: str
     file_id: str
     company_id: str
+    table_name: str
     changes_detected: int
+
+class UploadRequest(BaseModel):
+    company_id: str
+    table_type: Literal["Asset", "Location", "WorkOrder", "PreventiveMaintenance", "PurchaseOrder"]
+    
+    @validator('table_type')
+    def validate_table_type(cls, v):
+        if v not in SUPPORTED_TABLE_TYPES:
+            raise ValueError(f"Invalid table type. Must be one of: {SUPPORTED_TABLE_TYPES}")
+        return v
 
 # Helper functions
 def generate_file_id(filename: str, content: bytes) -> str:
@@ -90,17 +108,20 @@ def get_company_id_from_filename(filename: str) -> str:
     # Assuming filename format is like "Company_X_Data.csv"
     return os.path.splitext(filename)[0].replace(" ", "_")
 
-def detect_changes(new_file_path: str, company_id: str) -> List[CDCEvent]:
+def detect_changes(new_file_path: str, company_id: str, table_name: str) -> List[CDCEvent]:
     """Detect changes between the new file and the previous version"""
-    logger.info(f"Detecting changes for company: {company_id}")
+    logger.info(f"Detecting changes for company: {company_id}, table: {table_name}")
     
-    # Find the most recent previous file for this company
+    # Find the most recent previous file for this company and table
     previous_files = [f for f in os.listdir(CURRENT_DIR) 
-                     if f.startswith(company_id) and f.endswith(".csv")]
+                     if f.startswith(f"{company_id}_{table_name}") and f.endswith(".csv")]
     
     # Read the new file
     try:
-        new_df = pd.read_csv(new_file_path).fillna(value="")
+        new_df = pd.read_csv(new_file_path)
+        
+        # Handle null values properly
+        new_df = new_df.astype(object).where(pd.notnull(new_df), None)
     except Exception as e:
         logger.error(f"Error reading new file: {e}")
         raise HTTPException(status_code=400, detail=f"Error reading CSV file: {str(e)}")
@@ -119,7 +140,6 @@ def detect_changes(new_file_path: str, company_id: str) -> List[CDCEvent]:
     # If no previous file exists, treat all rows as inserts
     if not previous_files:
         logger.info("No previous file found. Treating all rows as inserts.")
-        table_name = os.path.splitext(os.path.basename(new_file_path))[0]
         
         for _, row in new_df.iterrows():
             event = CDCEvent(
@@ -143,10 +163,12 @@ def detect_changes(new_file_path: str, company_id: str) -> List[CDCEvent]:
     
     try:
         prev_df = pd.read_csv(previous_file_path)
+        
+        # Handle null values properly
+        prev_df = prev_df.astype(object).where(pd.notnull(prev_df), None)
     except Exception as e:
         logger.error(f"Error reading previous file: {e}")
         # If we can't read the previous file, treat all as inserts
-        table_name = os.path.splitext(os.path.basename(new_file_path))[0]
         
         for _, row in new_df.iterrows():
             event = CDCEvent(
@@ -163,9 +185,6 @@ def detect_changes(new_file_path: str, company_id: str) -> List[CDCEvent]:
             cdc_events.append(event)
         
         return cdc_events
-    
-    # Extract table name from file name
-    table_name = os.path.splitext(os.path.basename(new_file_path))[0]
     
     # Convert DataFrames to dictionaries for easier comparison
     # Using the first column as the key
@@ -237,8 +256,8 @@ def send_events_to_kafka(events: List[CDCEvent]):
     
     try:
         for event in events:
-            # Use company_id + event_type as the key for proper partitioning
-            key = f"{event.company_id}_{event.event_type}"
+            # Use company_id + table_name + event_type as the key for proper partitioning
+            key = f"{event.company_id}_{event.table_name}_{event.event_type}"
             # Convert to dict for serialization
             event_dict = event.dict()
             # Send to Kafka
@@ -252,11 +271,12 @@ def send_events_to_kafka(events: List[CDCEvent]):
         logger.error(f"Error sending events to Kafka: {e}")
         return False
 
-async def process_file(file_path: str, company_id: str):
+
+async def process_file(file_path: str, company_id: str, table_name: str):
     """Process the uploaded file and send CDC events to Kafka"""
     try:
         # Detect changes
-        cdc_events = detect_changes(file_path, company_id)
+        cdc_events = detect_changes(file_path, company_id, table_name)
         
         # Send events to Kafka
         if cdc_events:
@@ -266,11 +286,11 @@ async def process_file(file_path: str, company_id: str):
         
         # Move file to current directory (replacing any existing file)
         filename = os.path.basename(file_path)
-        current_file_path = os.path.join(CURRENT_DIR, f"{company_id}_{filename}")
+        current_file_path = os.path.join(CURRENT_DIR, f"{company_id}_{table_name}_{filename}")
         
         # Archive the current file if it exists
         if os.path.exists(current_file_path):
-            archive_filename = f"{company_id}_{datetime.now().strftime('%Y%m%d%H%M%S')}_{filename}"
+            archive_filename = f"{company_id}_{table_name}_{datetime.now().strftime('%Y%m%d%H%M%S')}_{filename}"
             shutil.copy2(current_file_path, os.path.join(ARCHIVE_DIR, archive_filename))
         
         # Move new file to current directory
@@ -285,9 +305,13 @@ async def process_file(file_path: str, company_id: str):
         if os.path.exists(file_path):
             os.remove(file_path)
 
+
+
 @app.post("/upload", response_model=ProcessingResponse)
 async def upload_file(
     background_tasks: BackgroundTasks,
+    company_id: str = Form(...),
+    table_type: str = Form(...),
     file: UploadFile = File(...)
 ):
     """
@@ -299,9 +323,8 @@ async def upload_file(
     # Read file content
     content = await file.read()
     
-    # Generate file ID and company ID
+    # Generate file ID
     file_id = generate_file_id(file.filename, content)
-    company_id = get_company_id_from_filename(file.filename)
     
     # Save file to temporary location
     temp_file_path = os.path.join(DATA_DIR, f"temp_{file_id}.csv")
@@ -309,17 +332,17 @@ async def upload_file(
         f.write(content)
     
     try:
-        # Process the file in the background
-        changes_count = await process_file(temp_file_path, company_id)
+        # Process the file with all required parameters
+        changes_count = await process_file(temp_file_path, company_id, table_type)
         
         return ProcessingResponse(
             message="File processed successfully",
             file_id=file_id,
             company_id=company_id,
+            table_name=table_type,
             changes_detected=changes_count
         )
     except Exception as e:
-        # Clean up in case of error
         if os.path.exists(temp_file_path):
             os.remove(temp_file_path)
         raise HTTPException(status_code=500, detail=f"Error processing file: {str(e)}")
@@ -340,3 +363,4 @@ async def health_check():
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+

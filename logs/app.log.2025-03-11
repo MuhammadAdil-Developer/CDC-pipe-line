@@ -1,0 +1,4 @@
+2025-03-11 10:28:17,690 - kafka.client - INFO - Closing idle connection 1, last active 32716847 ms ago
+2025-03-11 10:28:17,781 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+2025-03-11 10:28:17,856 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+2025-03-11 10:28:17,857 - kafka.conn - INFO - <BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
