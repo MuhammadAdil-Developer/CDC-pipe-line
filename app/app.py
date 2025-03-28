@@ -1,6 +1,9 @@
-from fastapi import FastAPI, File, UploadFile,Form, BackgroundTasks, HTTPException, Depends
-from fastapi.responses import JSONResponse
+from chatbot import router as chatbot_router
+from fastapi import FastAPI, File, UploadFile,Form, BackgroundTasks, HTTPException, Query
+from typing import List, Dict, Any, Optional, Literal
 import pandas as pd
+import mammoth
+import io
 import os
 import json
 import uuid
@@ -13,6 +16,8 @@ import shutil
 from pydantic import BaseModel, Field, validator
 from logging.handlers import TimedRotatingFileHandler
 from dotenv import load_dotenv
+from automl_anomaly_detection import AnomalyDetectionManager
+from azuredatalake import AzureDataLakeManager
 
 # Load environment variables
 load_dotenv()
@@ -33,6 +38,7 @@ logging.basicConfig(
         logging.StreamHandler()
     ]
 )
+
 logger = logging.getLogger(__name__)
 
 # Constants
@@ -53,6 +59,7 @@ SUPPORTED_TABLE_TYPES = [
 ]
 
 app = FastAPI(title="Excel CDC Data Ingestion API")
+app.include_router(chatbot_router, prefix="/api/v1")
 
 # Initialize Kafka producer
 def get_kafka_producer():
@@ -186,7 +193,6 @@ def detect_changes(new_file_path: str, company_id: str, table_name: str) -> List
         
         return cdc_events
     
-    # Convert DataFrames to dictionaries for easier comparison
     # Using the first column as the key
     new_dict = {str(row[key_column]): row.to_dict() for _, row in new_df.iterrows()}
     prev_dict = {str(row[key_column]): row.to_dict() for _, row in prev_df.iterrows()}
@@ -272,6 +278,52 @@ def send_events_to_kafka(events: List[CDCEvent]):
         return False
 
 
+def convert_docx_to_csv(docx_content: bytes) -> bytes:
+    """
+    Convert a .docx file to a CSV format
+    
+    Args:
+        docx_content (bytes): Content of the Word document
+    
+    Returns:
+        bytes: CSV content as bytes
+    """
+    try:
+        # Convert .docx to HTML first
+        result = mammoth.convert_to_html(io.BytesIO(docx_content))
+        html_content = result.value
+
+        # Attempt to convert HTML to a table-like structure
+        # This is a simple conversion and might need customization based on specific document structures
+        import pandas as pd
+        from bs4 import BeautifulSoup
+
+        # Parse HTML
+        soup = BeautifulSoup(html_content, 'html.parser')
+        
+        # Try to find tables
+        tables = soup.find_all('table')
+        
+        if tables:
+            # Convert first table to DataFrame
+            df = pd.read_html(str(tables[0]))[0]
+        else:
+            # If no tables, split by paragraphs
+            paragraphs = soup.find_all('p')
+            data = [p.get_text().split('\t') for p in paragraphs if p.get_text().strip()]
+            df = pd.DataFrame(data)
+        
+        # Convert DataFrame to CSV
+        csv_buffer = io.StringIO()
+        df.to_csv(csv_buffer, index=False)
+        
+        return csv_buffer.getvalue().encode('utf-8')
+    
+    except Exception as e:
+        logger.error(f"Error converting Word file to CSV: {e}")
+        raise HTTPException(status_code=400, detail=f"Could not convert Word file to CSV: {str(e)}")
+
+
 async def process_file(file_path: str, company_id: str, table_name: str):
     """Process the uploaded file and send CDC events to Kafka"""
     try:
@@ -315,10 +367,11 @@ async def upload_file(
     file: UploadFile = File(...)
 ):
     """
-    Upload a CSV file for CDC processing
+    Upload a CSV or XLSX file for CDC processing
     """
-    if not file.filename.endswith('.csv'):
-        raise HTTPException(status_code=400, detail="Only CSV files are accepted")
+    # Validate file type
+    if not (file.filename.endswith('.csv') or file.filename.endswith('.xlsx')):
+        raise HTTPException(status_code=400, detail="Only CSV and XLSX files are accepted")
     
     # Read file content
     content = await file.read()
@@ -327,9 +380,27 @@ async def upload_file(
     file_id = generate_file_id(file.filename, content)
     
     # Save file to temporary location
-    temp_file_path = os.path.join(DATA_DIR, f"temp_{file_id}.csv")
-    with open(temp_file_path, "wb") as f:
-        f.write(content)
+    temp_file_path = os.path.join(DATA_DIR, f"temp_{file_id}")
+    
+    # Convert XLSX to CSV if needed
+    if file.filename.endswith('.xlsx'):
+        try:
+            # Read Excel file
+            excel_df = pd.read_excel(io.BytesIO(content))
+            
+            # Add .csv extension
+            temp_file_path += '.csv'
+            
+            # Save as CSV
+            excel_df.to_csv(temp_file_path, index=False)
+        except Exception as e:
+            logger.error(f"Error processing Excel file: {e}")
+            raise HTTPException(status_code=500, detail=f"Error processing Excel file: {str(e)}")
+    else:
+        # For CSV files, save as is
+        temp_file_path += '.csv'
+        with open(temp_file_path, "wb") as f:
+            f.write(content)
     
     try:
         # Process the file with all required parameters
@@ -347,7 +418,73 @@ async def upload_file(
             os.remove(temp_file_path)
         raise HTTPException(status_code=500, detail=f"Error processing file: {str(e)}")
 
+@app.post("/anomaly/detect/{company_id}/{table_name}", response_model=Dict)
+async def trigger_anomaly_detection(
+    company_id: str,
+    table_name: str,
+    time_window_days: int = Query(30, description="Time window in days for analysis")
+):
+    """Trigger anomaly detection for a specific company and table"""
+    try:
+        detector = AnomalyDetectionManager()
+        result = detector.detect_anomalies_in_company_data(
+            company_id=company_id,
+            table_name=table_name,
+            metric_column="changes_count",
+            time_window_days=time_window_days
+        )
+        
+        return result
+    except Exception as e:
+        logger.error(f"Error triggering anomaly detection: {e}")
+        raise HTTPException(status_code=500, detail=f"Error triggering anomaly detection: {str(e)}")
 
+@app.get("/anomaly/results/{company_id}/{table_name}", response_model=List[Dict])
+async def get_anomaly_results(
+    company_id: str,
+    table_name: str,
+    limit: int = Query(10, description="Maximum number of results to return")
+):
+    """Get anomaly detection results for a specific company and table"""
+    try:
+        # Get the Azure Data Lake client
+        azure_manager = AzureDataLakeManager()
+        if not azure_manager or not azure_manager.file_system_client:
+            raise HTTPException(status_code=500, detail="Azure Data Lake client not available")
+        
+        # Define the path for anomaly results
+        anomaly_dir = f"analytics/{company_id}/{table_name}/anomalies"
+        
+        # List files in the directory
+        try:
+            directory_client = azure_manager.file_system_client.get_directory_client(anomaly_dir)
+            paths = list(directory_client.get_paths())
+        except Exception:
+            # Directory doesn't exist or other error
+            return []
+        
+        # Sort by last modified time (newest first)
+        paths.sort(key=lambda p: p.last_modified, reverse=True)
+        
+        # Limit the number of results
+        paths = paths[:limit]
+        
+        # Read the files and return the results
+        results = []
+        for path_item in paths:
+            try:
+                file_client = azure_manager.file_system_client.get_file_client(path_item.name)
+                download = file_client.download_file()
+                file_content = download.readall().decode('utf-8')
+                result = json.loads(file_content)
+                results.append(result)
+            except Exception as e:
+                logger.error(f"Error reading anomaly result file: {e}")
+        
+        return results
+    except Exception as e:
+        logger.error(f"Error getting anomaly results: {e}")
+        raise HTTPException(status_code=500, detail=f"Error getting anomaly results: {str(e)}")
 
 @app.get("/health")
 async def health_check():
