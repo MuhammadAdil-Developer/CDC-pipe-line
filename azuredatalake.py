@@ -122,6 +122,22 @@ class AzureDataLakeManager:
             logger.error(f"Error uploading CDC event to Azure Data Lake: {e}")
             return False
     
+    def get_latest_anomalies(self, limit: int = 10) -> list:
+        """Get latest anomaly reports from data lake - for chatbot"""
+        try:
+            directory_client = self.file_system_client.get_directory_client("analytics/anomalies")
+            anomaly_files = list(directory_client.get_paths())
+            
+            # Get most recent file
+            latest_file = sorted(anomaly_files, key=lambda x: x.last_modified, reverse=True)[0]
+            file_client = directory_client.get_file_client(latest_file.name)
+            
+            download = file_client.download_file()
+            return json.loads(download.readall())
+        except Exception as e:
+            logging.error(f"Error fetching anomalies: {str(e)}")
+            return []
+
     def _ensure_directory_exists(self, directory_path):
         """Ensure a directory exists in the data lake"""
         try:

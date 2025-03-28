@@ -5,6 +5,7 @@ import sys
 import time
 from datetime import datetime
 from typing import Dict, Any
+import threading
 
 import pandas as pd
 import psycopg2
@@ -19,6 +20,7 @@ import pyarrow.parquet as pq
 from logging.handlers import TimedRotatingFileHandler
 from azure.storage.filedatalake import DataLakeServiceClient
 from azuredatalake import AzureDataLakeManager
+from automl_anomaly_detection import run_anomaly_detection_for_event
 
 # Load environment variables
 load_dotenv()
@@ -48,6 +50,7 @@ DATABASE_URL = os.environ.get("DATABASE_URL", "postgresql://postgres:postgres@lo
 DELTA_DIR = os.environ.get("DELTA_DIR", "./data/delta")
 PARQUET_DIR = os.environ.get("PARQUET_DIR", "./data/parquet")
 CONSUMER_GROUP = os.environ.get("CONSUMER_GROUP", "cdc-processor")
+print(CONSUMER_GROUP)
 
 # Azure Storage settings
 AZURE_STORAGE_CONNECTION_STRING = os.environ.get("AZURE_STORAGE_CONNECTION_STRING", "")
@@ -187,10 +190,17 @@ def process_event(event: Dict[str, Any], conn):
             
             # Generate delta files for this event
             generate_delta_table(event)
-            
+        
+        threading.Thread(
+            target=run_anomaly_detection_for_event,
+            args=(event,),
+            daemon=True
+        ).start()
+        
     except Exception as e:
         logger.error(f"Error processing event: {e}")
-        conn.rollback()
+        raise e
+
 
 def generate_delta_table(event: Dict[str, Any]):
     """Generate a delta table for the event using Delta Lake"""
