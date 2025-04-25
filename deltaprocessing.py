@@ -22,139 +22,112 @@ def get_spark_session():
 
 def create_enhanced_delta_table(event, spark=None):
     """
-    Create an enhanced delta table that makes changes easily visible
-    and supports Power BI integration
+    Creates delta tables with:
+    - Flat company folder structure (DUK/, AEP/)
+    - Company IDs in file names
+    - Power BI friendly structure
     """
     if spark is None:
         spark = get_spark_session()
         if not spark:
-            raise Exception("Failed to create Spark session")
-    
-    # Extract event details
-    company_id = event['company_id']
+            raise Exception("Spark session unavailable")
+
+    # Extract and standardize company ID (DUK, AEP, etc.)
+    company_id = event['company_id'].strip().upper()
     table_name = event['table_name']
     event_type = event['event_type']
+    key_value = str(event['key_value'])
     timestamp = event['timestamp']
-    key_column = event['key_column']
-    key_value = event['key_value']
-    
-    # Define paths
+
+    # New flat directory structure
     base_dir = os.environ.get("DELTA_DIR", "./data/delta")
     company_dir = os.path.join(base_dir, company_id)
-    table_dir = os.path.join(company_dir, table_name)
-    delta_table_path = os.path.join(table_dir, "delta_table")
-    
-    # Ensure directories exist
-    os.makedirs(table_dir, exist_ok=True)
-    
-    # Create data for the row
-    if event_type == 'insert' or event_type == 'update':
-        data = event['new_values'] if event['new_values'] else {}
-    else:  # delete
-        data = event['old_values'] if event['old_values'] else {}
-    
-    # Skip if no data
+    os.makedirs(company_dir, exist_ok=True)
+
+    # Delta table path with company prefix
+    delta_table_path = os.path.join(company_dir, f"{table_name}_delta")
+
+    # Create data with metadata columns
+    data = {}
+    if event_type in ['insert', 'update'] and event['new_values']:
+        data = event['new_values']
+    elif event_type == 'delete' and event['old_values']:
+        data = event['old_values']
+
     if not data:
-        print("No data found in event, skipping")
-        return
-    
-    # Clean data to avoid type inference issues
-    clean_data = {}
-    for k, v in data.items():
-        if pd.isna(v):
-            clean_data[k] = None
-        elif isinstance(v, (dict, list)):
-            clean_data[k] = json.dumps(v)  # Convert complex objects to JSON strings
-        else:
-            clean_data[k] = v
-    
-    # Add metadata as simple string types to avoid inference issues
-    metadata = {
-        '_cdc_event_id': event['event_id'],
-        '_cdc_event_type': event_type,
-        '_cdc_timestamp': timestamp,
-        '_cdc_is_current': "true" if event_type != 'delete' else "false"  # Use string instead of boolean
+        logger.warning(f"No data found in {event_type} event")
+        return None
+
+    # Clean and enhance data
+    enhanced_data = {
+        **{k: (None if pd.isna(v) else v) for k,v in data.items()},
+        '_event_id': event['event_id'],
+        '_company_id': company_id,
+        '_event_type': event_type,
+        '_timestamp': timestamp,
+        '_is_current': event_type != 'delete'
     }
-    
-    # Combine data and metadata
-    data_with_metadata = {**clean_data, **metadata}
-    
-    # Create a pandas DataFrame
-    pandas_df = pd.DataFrame([data_with_metadata])
-    
-    # Convert all columns to string type to avoid inference issues
-    for col in pandas_df.columns:
-        pandas_df[col] = pandas_df[col].astype(str)
-    
-    # Convert to Spark DataFrame with string schema
-    spark_df = spark.createDataFrame(pandas_df)
-    
+
+    # Create DataFrame
+    pdf = pd.DataFrame([enhanced_data])
+    spark_df = spark.createDataFrame(pdf)
+
     try:
-        # Check if the Delta table exists - MODIFIED THIS PART
-        delta_table_exists = DeltaTable.isDeltaTable(spark, delta_table_path)
-        
-        if delta_table_exists:
-            # If table exists, update or insert as appropriate
+        # Check if Delta table exists
+        if DeltaTable.isDeltaTable(spark, delta_table_path):
             delta_table = DeltaTable.forPath(spark, delta_table_path)
             
-            if event_type == 'insert' or event_type == 'update':
-                # First mark any existing records for this key as not current
-                if key_column in data:
-                    delta_table.update(
-                        condition=f"{key_column} = '{key_value}' AND _cdc_is_current = 'true'",
-                        set={
-                            "_cdc_is_current": "false"
-                        }
-                    )
-                
-                # Then append the new record
-                spark_df.write.format("delta").mode("append").save(delta_table_path)
-                
+            # For updates/inserts, mark previous version as not current
+            if event_type in ['insert', 'update']:
+                delta_table.update(
+                    condition=f"{event['key_column']} = '{key_value}' AND _is_current = true",
+                    set={"_is_current": "false"}
+                )
+            
+            # For deletes, just mark as not current
             elif event_type == 'delete':
-                # For delete, mark existing records as not current
-                if key_column in data:
-                    delta_table.update(
-                        condition=f"{key_column} = '{key_value}' AND _cdc_is_current = 'true'",
-                        set={
-                            "_cdc_is_current": "false"
-                        }
-                    )
+                delta_table.update(
+                    condition=f"{event['key_column']} = '{key_value}' AND _is_current = true",
+                    set={"_is_current": "false"}
+                )
+                return delta_table_path
+
+            # Append new version
+            spark_df.write.format("delta").mode("append").save(delta_table_path)
         else:
-            # Delta table doesn't exist yet, create it
-            spark_df.write.format("delta").mode("overwrite").save(delta_table_path)
-    
-        # Create a view for Power BI to more easily access thecurrent  state
-        create_current_state_view(spark, delta_table_path, company_id, table_name)
-    
+            # Create new Delta table
+            spark_df.write.format("delta").mode("overwrite") \
+                .option("overwriteSchema", "true") \
+                .save(delta_table_path)
+
+        # Create Power BI view
+        create_powerbi_view(spark, delta_table_path, company_id, table_name)
+        
+        return delta_table_path
+
     except Exception as e:
-        print(f"Error working with Delta table: {e}")
+        logger.error(f"Delta processing failed: {str(e)}")
         raise e
-    
-    return delta_table_path
 
-def create_current_state_view(spark, delta_table_path, company_id, table_name):
-    """Create a view that shows only the current state of records for Power BI"""
+def create_powerbi_view(spark, delta_path, company_id, table_name):
+    """Creates Power BI optimized view"""
     try:
-        # Read the Delta table
-        df = spark.read.format("delta").load(delta_table_path)
+        # Read delta table
+        df = spark.read.format("delta").load(delta_path)
         
-        # Create a view with only current records
-        current_state_df = df.filter(df["_cdc_is_current"] == "true")  # Changed to match string comparison
+        # Create current records view
+        current_df = df.filter("_is_current = true")
         
-        # Save as a separate Delta table for current state
-        current_state_path = delta_table_path + "_current"
-        current_state_df.write.format("delta").mode("overwrite").save(current_state_path)
-        
-        # Create a history view
-        history_path = delta_table_path + "_history"
-        df.write.format("delta").mode("overwrite").save(history_path)
-        
-        # Export for Power BI
-        export_for_power_bi(spark, company_id, table_name, delta_table_path)
-        
+        # Save in Power BI friendly location
+        powerbi_dir = os.path.join(os.path.dirname(delta_path), "powerbi")
+        current_df.write.format("parquet") \
+            .mode("overwrite") \
+            .save(os.path.join(powerbi_dir, f"{table_name}_current_{company_id}"))
+            
     except Exception as e:
-        print(f"Error creating view: {e}")
+        logger.error(f"Power BI view creation failed: {str(e)}")
 
+        
 def export_for_power_bi(spark, company_id, table_name, delta_table_path):
     """
     Export the current state of data to a format suitable for Power BI

@@ -18,6 +18,7 @@ from logging.handlers import TimedRotatingFileHandler
 from dotenv import load_dotenv
 from automl_anomaly_detection import AnomalyDetectionManager
 from azuredatalake import AzureDataLakeManager
+import zipfile
 
 # Load environment variables
 load_dotenv()
@@ -127,6 +128,9 @@ def detect_changes(new_file_path: str, company_id: str, table_name: str) -> List
     try:
         new_df = pd.read_csv(new_file_path)
         
+        # Extract the first column name (presumably "Date")
+        date_column = new_df.columns[0] if len(new_df.columns) > 0 else "Date"
+        
         # Handle null values properly
         new_df = new_df.astype(object).where(pd.notnull(new_df), None)
     except Exception as e:
@@ -137,12 +141,17 @@ def detect_changes(new_file_path: str, company_id: str, table_name: str) -> List
     if len(new_df.columns) == 0:
         raise HTTPException(status_code=400, detail="CSV file has no columns")
     
-    # Assuming first column is the key column
+    # Assuming first column is the key column (Date)
     key_column = new_df.columns[0]
     logger.info(f"Using key column: {key_column}")
     
+    # Store the date column name for later use in creating parquet files
+    with open(f"{new_file_path}.colname", "w") as f:
+        f.write(key_column)
+    
     # Initialize empty list for CDC events
     cdc_events = []
+
     
     # If no previous file exists, treat all rows as inserts
     if not previous_files:
@@ -327,18 +336,42 @@ def convert_docx_to_csv(docx_content: bytes) -> bytes:
 async def process_file(file_path: str, company_id: str, table_name: str):
     """Process the uploaded file and send CDC events to Kafka"""
     try:
-        # Detect changes
+        # 1. First read the original file for debugging
+        original_df = pd.read_csv(file_path)
+        print("\n=== ORIGINAL FILE DEBUG ===")
+        print("Columns:", original_df.columns.tolist())
+        print("First 5 rows:\n", original_df.head())
+        print("==========================\n")
+
+        # 2. Detect changes (existing CDC logic)
         cdc_events = detect_changes(file_path, company_id, table_name)
         
-        # Send events to Kafka
+        # 3. Send events to Kafka
         if cdc_events:
             success = send_events_to_kafka(cdc_events)
             if not success:
                 logger.warning("Failed to send events to Kafka, but processing will continue")
-        
-        # Move file to current directory (replacing any existing file)
+
+        # 4. Process the original file for delta table creation
+        azure = AzureDataLakeManager()
+        azure.process_and_upload_data({
+            'company_id': company_id,
+            'table_name': table_name,
+            'event_type': 'upload',
+            'event_id': str(uuid.uuid4()),
+            'timestamp': datetime.now().isoformat()
+        }, original_df)
+
+        # 5. File management (existing logic)
         filename = os.path.basename(file_path)
         current_file_path = os.path.join(CURRENT_DIR, f"{company_id}_{table_name}_{filename}")
+        
+        # Read the first column name that was saved during detect_changes
+        first_column_name = "Date"  # Default value
+        colname_file = f"{file_path}.colname"
+        if os.path.exists(colname_file):
+            with open(colname_file, "r") as f:
+                first_column_name = f.read().strip()
         
         # Archive the current file if it exists
         if os.path.exists(current_file_path):
@@ -348,15 +381,21 @@ async def process_file(file_path: str, company_id: str, table_name: str):
         # Move new file to current directory
         shutil.copy2(file_path, current_file_path)
         
+        # Also store the first column name with the current file
+        with open(f"{current_file_path}.colname", "w") as f:
+            f.write(first_column_name)
+        
         return len(cdc_events)
+        
     except Exception as e:
         logger.error(f"Error processing file: {e}")
         raise e
     finally:
-        # Clean up the temporary file
+        # Clean up the temporary files
         if os.path.exists(file_path):
             os.remove(file_path)
-
+        if os.path.exists(f"{file_path}.colname"):
+            os.remove(f"{file_path}.colname")
 
 
 @app.post("/upload", response_model=ProcessingResponse)
@@ -370,8 +409,8 @@ async def upload_file(
     Upload a CSV or XLSX file for CDC processing
     """
     # Validate file type
-    if not (file.filename.endswith('.csv') or file.filename.endswith('.xlsx')):
-        raise HTTPException(status_code=400, detail="Only CSV and XLSX files are accepted")
+    if not (file.filename.endswith('.csv') or file.filename.endswith('.xlsx') or file.filename.endswith('.docx')):
+        raise HTTPException(status_code=400, detail="Only CSV, XLSX, and DOCX files are accepted")
     
     # Read file content
     content = await file.read()
@@ -382,11 +421,19 @@ async def upload_file(
     # Save file to temporary location
     temp_file_path = os.path.join(DATA_DIR, f"temp_{file_id}")
     
-    # Convert XLSX to CSV if needed
+    # Convert files to CSV if needed
     if file.filename.endswith('.xlsx'):
         try:
             # Read Excel file
             excel_df = pd.read_excel(io.BytesIO(content))
+            
+            # DEBUG: Print columns and first few rows
+            print("\n=== UPLOAD DEBUG START ===")
+            print("File Type: Excel")
+            print("All Columns:", list(excel_df.columns))
+            print("First 3 Rows:")
+            print(excel_df.head(10))
+            print("=== UPLOAD DEBUG END ===\n")
             
             # Add .csv extension
             temp_file_path += '.csv'
@@ -396,13 +443,53 @@ async def upload_file(
         except Exception as e:
             logger.error(f"Error processing Excel file: {e}")
             raise HTTPException(status_code=500, detail=f"Error processing Excel file: {str(e)}")
+    elif file.filename.endswith('.docx'):
+        try:
+            # Convert Word to CSV
+            csv_content = convert_docx_to_csv(content)
+            
+            # DEBUG: Print content
+            print("\n=== UPLOAD DEBUG START ===")
+            print("File Type: Word")
+            print("Raw Content Preview:", csv_content[:500])  # First 500 chars
+            print("=== UPLOAD DEBUG END ===\n")
+            
+            # Add .csv extension
+            temp_file_path += '.csv'
+            
+            # Save as CSV
+            with open(temp_file_path, "wb") as f:
+                f.write(csv_content)
+        except Exception as e:
+            logger.error(f"Error processing Word file: {e}")
+            raise HTTPException(status_code=500, detail=f"Error processing Word file: {str(e)}")
     else:
         # For CSV files, save as is
         temp_file_path += '.csv'
         with open(temp_file_path, "wb") as f:
             f.write(content)
+        
+        # DEBUG: Print CSV content
+        try:
+            csv_df = pd.read_csv(temp_file_path)
+            print("\n=== UPLOAD DEBUG START ===")
+            print("File Type: CSV")
+            print("All Columns:", list(csv_df.columns))
+            print("First 3 Rows:")
+            print(csv_df.head(3))
+            print("=== UPLOAD DEBUG END ===\n")
+        except Exception as e:
+            print(f"Could not read CSV for debugging: {e}")
     
     try:
+        # Read the file to extract column names BEFORE processing
+        df = pd.read_csv(temp_file_path)
+        first_column_name = df.columns[0] if len(df.columns) > 0 else "Date"
+        
+        # Add the first column name to the file path for reference
+        with open(f"{temp_file_path}.colname", "w") as f:
+            f.write(first_column_name)
+        
         # Process the file with all required parameters
         changes_count = await process_file(temp_file_path, company_id, table_type)
         
@@ -417,6 +504,146 @@ async def upload_file(
         if os.path.exists(temp_file_path):
             os.remove(temp_file_path)
         raise HTTPException(status_code=500, detail=f"Error processing file: {str(e)}")
+
+
+@app.post("/upload-zip", response_model=ProcessingResponse)
+async def upload_zip_file(
+    background_tasks: BackgroundTasks,
+    file: UploadFile = File(...),
+    output_folder: str = Form(".")
+):
+    """
+    Process a ZIP file containing financial spreadsheets and create a single consolidated Parquet file
+    in Azure Delta Lake with simple folder structure:
+    {company_id}/consolidated_data.parquet
+    """
+    # Validate file type
+    if not file.filename.endswith('.zip'):
+        raise HTTPException(status_code=400, detail="Only ZIP files are accepted")
+
+    # Initialize variables to ensure cleanup works
+    temp_zip_path = None
+    
+    try:
+        # Save the zip file temporarily
+        temp_zip_path = os.path.join(DATA_DIR, f"temp_{uuid.uuid4()}.zip")
+        with open(temp_zip_path, "wb") as f:
+            f.write(await file.read())
+
+        # Process the zip file and get combined DataFrame
+        combined_df = process_financial_zip(temp_zip_path, output_folder)
+
+        # Extract company ID from filename (before first hyphen)
+        company_id = os.path.splitext(file.filename)[0].split("-")[0].upper()
+        
+        # Initialize Azure Data Lake Manager
+        azure = AzureDataLakeManager()
+        
+        # Upload consolidated data - YAHAN MAIN FUNCTION KO CALL KAR RAHA HOON
+        success = azure.upload_consolidated_data(company_id, combined_df)
+        
+        if not success:
+            raise HTTPException(status_code=500, detail="Failed to upload consolidated data to Azure")
+        
+        return ProcessingResponse(
+            message="ZIP file processed successfully. Data consolidated into single Parquet file.",
+            file_id=str(uuid.uuid4()),
+            company_id=company_id,
+            table_name="consolidated_data",
+            changes_detected=len(combined_df)
+        )
+
+    except ValueError as e:
+        if "No valid data found" in str(e):
+            raise HTTPException(
+                status_code=400,
+                detail="The ZIP file doesn't contain any valid Excel spreadsheets or the sheets are empty"
+            )
+        raise HTTPException(status_code=500, detail=f"Error processing ZIP file: {str(e)}")
+    except Exception as e:
+        logger.error(f"Error processing ZIP file: {e}")
+        raise HTTPException(status_code=500, detail=f"Error processing ZIP file: {str(e)}")
+    finally:
+        # Clean up temporary files
+        if temp_zip_path and os.path.exists(temp_zip_path):
+            try:
+                os.remove(temp_zip_path)
+            except Exception as e:
+                logger.error(f"Error cleaning up temp file {temp_zip_path}: {e}")
+                                
+def process_financial_zip(zip_path: str, output_folder: str) -> pd.DataFrame:
+    """Process ZIP file with subfolder structure"""
+    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+        # Get all XLSX files including subfolders
+        xlsx_files = [f for f in zip_ref.namelist() 
+                     if f.lower().endswith('.xlsx') and not f.startswith('__MACOSX')]
+        
+        if not xlsx_files:
+            raise ValueError("No XLSX files found")
+
+        extract_path = os.path.join(DATA_DIR, f"unzipped_{uuid.uuid4()}")
+        zip_ref.extractall(extract_path)
+        logger.info(f"Extracted {len(xlsx_files)} files")
+
+    wide_records = []
+
+    for root, _, files in os.walk(extract_path):
+        for file in files:
+            if not file.lower().endswith('.xlsx'):
+                continue
+                
+            filepath = os.path.join(root, file)
+            try:
+                xls = pd.ExcelFile(filepath)
+                logger.info(f"Processing {file} with {len(xls.sheet_names)} sheets")
+
+                for sheet in xls.sheet_names:
+                    try:
+                        # More flexible reading
+                        df = pd.read_excel(xls, sheet_name=sheet, header=None)
+                        
+                        # Skip if empty
+                        if df.empty or df.shape[1] < 2:
+                            continue
+
+                        # Auto-detect header row
+                        header_row = 0
+                        for i in range(min(3, len(df))):  # Check first 3 rows
+                            if any("date" in str(cell).lower() for cell in df.iloc[i]):
+                                header_row = i
+                                break
+                                
+                        headers = df.iloc[header_row].fillna("").astype(str).str.strip().tolist()
+                        headers[0] = "METRIC"
+                        df.columns = headers
+                        df = df.iloc[header_row+1:].reset_index(drop=True)
+
+                        # Flexible metadata extraction
+                        company = os.path.splitext(file)[0].split("-")[0].upper().strip()
+                        statement = sheet.split("-")[0].strip() if "-" in sheet else "GENERAL"
+                        frequency = sheet.split("-")[-1].strip() if "-" in sheet else "ANNUAL"
+
+                        df.insert(0, "SECTOR", "GAS UTILITY")
+                        df.insert(1, "COMPANY", company)
+                        df.insert(2, "STATEMENT", statement)
+                        df.insert(3, "FREQUENCY", frequency)
+
+                        wide_records.append(df)
+
+                    except Exception as e:
+                        logger.error(f"Sheet {sheet} error: {str(e)}")
+                        continue
+
+            except Exception as e:
+                logger.error(f"File {file} error: {str(e)}")
+                continue
+
+    shutil.rmtree(extract_path, ignore_errors=True)
+    
+    if not wide_records:
+        raise ValueError("No data found - check if sheets contain valid tables")
+    
+    return pd.concat(wide_records, ignore_index=True)
 
 @app.post("/anomaly/detect/{company_id}/{table_name}", response_model=Dict)
 async def trigger_anomaly_detection(

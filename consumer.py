@@ -46,7 +46,10 @@ logger = logging.getLogger(__name__)
 # Constants
 KAFKA_BOOTSTRAP_SERVERS = os.environ.get("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092")
 KAFKA_TOPIC = os.environ.get("KAFKA_TOPIC", "cdc-events")
-DATABASE_URL = os.environ.get("DATABASE_URL", "postgresql://postgres:postgres@localhost:5432/cdc_data")
+DATABASE_URL = os.environ.get(
+    "DATABASE_URL", 
+    "postgresql://adil:admin123@20.9.138.28:5432/cdc_data"
+)
 DELTA_DIR = os.environ.get("DELTA_DIR", "./data/delta")
 PARQUET_DIR = os.environ.get("PARQUET_DIR", "./data/parquet")
 CONSUMER_GROUP = os.environ.get("CONSUMER_GROUP", "cdc-processor")
@@ -56,7 +59,7 @@ print(CONSUMER_GROUP)
 AZURE_STORAGE_CONNECTION_STRING = os.environ.get("AZURE_STORAGE_CONNECTION_STRING", "")
 AZURE_STORAGE_ACCOUNT_NAME = os.environ.get("AZURE_STORAGE_ACCOUNT_NAME", "")
 AZURE_STORAGE_ACCOUNT_KEY = os.environ.get("AZURE_STORAGE_ACCOUNT_KEY", "")
-AZURE_CONTAINER_NAME = os.environ.get("AZURE_CONTAINER_NAME", "cdcdata")
+AZURE_CONTAINER_NAME = os.environ.get("AZURE_CONTAINER_NAME", "newcdcdata")
 USE_AZURE_STORAGE = AZURE_STORAGE_CONNECTION_STRING != ""
 
 # Create directories
@@ -99,40 +102,55 @@ def replace_nan_with_none(data):
         return data
 
 def process_event(event: Dict[str, Any], conn):
+    """Processes CDC events with data validation and new structure"""
     try:
-        with conn.cursor() as cur:
-            # Replace NaN with None in old_values and new_values
-            old_values = json.dumps(replace_nan_with_none(event['old_values']), default=str) if event['old_values'] else None
-            new_values = json.dumps(replace_nan_with_none(event['new_values']), default=str) if event['new_values'] else None
+        # Validate company data exists
+        if not event.get('company_id') or not event.get('table_name'):
+            logger.error("Missing company_id or table_name in event")
+            return False
 
+        company_id = event['company_id'].strip().upper()
+        table_name = event['table_name']
+        event_type = event['event_type']
+
+        logger.info(f"Processing {event_type} for {company_id}/{table_name}")
+
+        # Verify we have actual data values
+        if event_type in ['insert', 'update'] and not event.get('new_values'):
+            logger.error(f"No new_values in {event_type} event")
+            return False
+        elif event_type == 'delete' and not event.get('old_values'):
+            logger.error("No old_values in delete event")
+            return False
+
+        with conn.cursor() as cur:
+            # 1. Store raw event
             cur.execute("""
                 INSERT INTO cdc_events 
-                (event_id, event_type, company_id, table_name, timestamp, key_column, key_value, old_values, new_values)
+                (event_id, event_type, company_id, table_name, timestamp, 
+                 key_column, key_value, old_values, new_values)
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
                 ON CONFLICT (event_id) DO NOTHING
                 RETURNING id
             """, (
                 event['event_id'],
-                event['event_type'],
-                event['company_id'],
-                event['table_name'],
+                event_type,
+                company_id,
+                table_name,
                 event['timestamp'],
                 event['key_column'],
-                event['key_value'],
-                old_values,
-                new_values
+                str(event['key_value']),
+                json.dumps(event['old_values']) if event.get('old_values') else None,
+                json.dumps(event['new_values']) if event.get('new_values') else None
             ))
-            
-            # If the event was already processed, skip it
+
             if cur.rowcount == 0:
-                logger.info(f"Event {event['event_id']} already processed, skipping")
-                return
-            
-            # Now handle the change in the company_data table
-            if event['event_type'] == 'insert' or event['event_type'] == 'update':
-                # For insert or update, we need to handle the history
-                
-                # First, mark any current record as not current
+                logger.info(f"Event {event['event_id']} already processed")
+                return True
+
+            # 2. Update company data table
+            if event_type in ['insert', 'update']:
+                # Expire old version
                 cur.execute("""
                     UPDATE company_data
                     SET is_current = FALSE, 
@@ -143,26 +161,26 @@ def process_event(event: Dict[str, Any], conn):
                       AND is_current = TRUE
                 """, (
                     event['timestamp'],
-                    event['company_id'],
-                    event['table_name'],
-                    event['key_value']
+                    company_id,
+                    table_name,
+                    str(event['key_value'])
                 ))
-                
-                # Then insert the new record
+
+                # Insert new version
                 cur.execute("""
                     INSERT INTO company_data
                     (company_id, table_name, record_key, data, valid_from, is_current)
                     VALUES (%s, %s, %s, %s, %s, TRUE)
                 """, (
-                    event['company_id'],
-                    event['table_name'],
-                    event['key_value'],
-                    json.dumps(replace_nan_with_none(event['new_values'])),
+                    company_id,
+                    table_name,
+                    str(event['key_value']),
+                    json.dumps(event['new_values']),
                     event['timestamp']
                 ))
-                
-            elif event['event_type'] == 'delete':
-                # For delete, mark the record as not current
+
+            elif event_type == 'delete':
+                # Mark as expired
                 cur.execute("""
                     UPDATE company_data
                     SET is_current = FALSE, 
@@ -173,85 +191,70 @@ def process_event(event: Dict[str, Any], conn):
                       AND is_current = TRUE
                 """, (
                     event['timestamp'],
-                    event['company_id'],
-                    event['table_name'],
-                    event['key_value']
+                    company_id,
+                    table_name,
+                    str(event['key_value'])
                 ))
-            
-            # Mark the event as processed
+
+            # 3. Mark event as processed
             cur.execute("""
                 UPDATE cdc_events
                 SET processed = TRUE
                 WHERE event_id = %s
             """, (event['event_id'],))
-            
+
             conn.commit()
-            logger.info(f"Processed event {event['event_id']} of type {event['event_type']}")
-            
-            # Generate delta files for this event
-            generate_delta_table(event)
-        
-        threading.Thread(
-            target=run_anomaly_detection_for_event,
-            args=(event,),
-            daemon=True
-        ).start()
-        
+
+            # 4. Generate delta files (async to avoid blocking)
+            threading.Thread(
+                target=generate_delta_table,
+                args=(event,),
+                daemon=True
+            ).start()
+
+            # 5. Trigger anomaly detection (async)
+            threading.Thread(
+                target=run_anomaly_detection_for_event,
+                args=(event,),
+                daemon=True
+            ).start()
+
+            return True
+
     except Exception as e:
-        logger.error(f"Error processing event: {e}")
+        logger.error(f"Error processing event: {str(e)}")
+        if conn:
+            conn.rollback()
         raise e
 
 
-def generate_delta_table(event: Dict[str, Any]):
-    """Generate a delta table for the event using Delta Lake"""
-    try:
-        # Create a directory structure for delta files
-        company_id = event['company_id']
-        table_name = event['table_name']
+# def generate_delta_table(event: Dict[str, Any]):
+#     try:
+#         company_id = event['company_id']  # "AEP"
+#         table_name = event['table_name']  # "d_financials_sheet"
         
-        # Determine if we're using local or Azure storage
-        if USE_AZURE_STORAGE:
-            logger.info("Azure Data Lake storage is enabled. Processing with Azure Data Lake.")
-            
-            # Generate DataFrame from event
-            df = create_event_dataframe(event)
-            
-            # Upload to Azure Data Lake
-            azure_manager = AzureDataLakeManager()
-            if azure_manager.upload_cdc_event(event, df):
-                logger.info(f"Successfully uploaded event to Azure Data Lake for {company_id}/{table_name}")
-            else:
-                logger.error(f"Failed to upload event to Azure Data Lake for {company_id}/{table_name}")
-        else:
-            logger.info("Azure Data Lake storage is disabled. Falling back to local Delta Lake processing.")
-            
-            # Use deltaprocessing to create Delta tables
-            from deltaprocessing import create_enhanced_delta_table
-            
-            try:
-                # Process with Delta Lake
-                create_enhanced_delta_table(event)
-                logger.info(f"Successfully created/updated Delta table for {company_id}/{table_name}")
-            except Exception as delta_error:
-                logger.error(f"Error with Delta processing: {delta_error}")
-                
-                # Fallback to parquet if Delta fails
-                logger.info("Falling back to parquet storage")
-                df = create_event_dataframe(event)
-                
-                # Local storage path for parquet fallback
-                company_dir = os.path.join(PARQUET_DIR, company_id)
-                table_dir = os.path.join(company_dir, table_name)
-                os.makedirs(table_dir, exist_ok=True)
-                
-                # Save as parquet with timestamp
-                timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
-                file_path = os.path.join(table_dir, f"{event['key_value']}_{timestamp}.parquet")
-                df.to_parquet(file_path, index=False)
-                logger.info(f"Saved event data to parquet: {file_path}")
+#         azure = AzureDataLakeManager()
+#         df = create_event_dataframe(event)
+        
+#         # This now uses the client's preferred structure
+#         azure.create_delta_table(event, df)
+#     except Exception as e:
+#         logger.error(f"Delta processing error: {str(e)}")
+
+def generate_delta_table(event: Dict[str, Any]):
+    try:
+        company_id = event['company_id']
+        df = create_event_dataframe(event)
+        
+        azure = AzureDataLakeManager()
+        # Use the simplified upload method instead of Delta tables
+        success = azure.upload_consolidated_data(company_id, df)
+        
+        if not success:
+            logger.error("Failed to upload consolidated data to Azure")
         
     except Exception as e:
-        logger.error(f"Error generating delta table: {e}")
+        logger.error(f"Data upload error: {str(e)}")
 
 def create_event_dataframe(event: Dict[str, Any]):
     """Create a DataFrame from the event data"""
@@ -269,11 +272,49 @@ def create_event_dataframe(event: Dict[str, Any]):
     # Store the entire payload as JSON
     data['data'] = [json.dumps(replace_nan_with_none(event['new_values'] if event['new_values'] else event['old_values']), default=str)]
     
-    # Create a column for all keys from new_values
+    # Look for date columns in the event data
+    date_column = None
+    date_column_value = None
+    
+    # First check if the key_column is a date column
+    if event['key_column'].lower() in ["date", "time", "period", "month", "day"]:
+        date_column = event['key_column']
+        date_column_value = event['key_value']
+    
+    # Otherwise look for date columns in the event data
+    elif event['new_values']:
+        for key in ["Date", "date", "TIME", "time", "Period", "period", "MONTH", "month", "DAY", "day"]:
+            if key in event['new_values']:
+                date_column = key
+                date_column_value = event['new_values'][key]
+                break
+        
+        # If no date column found, use the first column
+        if not date_column and event['new_values']:
+            date_column = list(event['new_values'].keys())[0]
+            date_column_value = event['new_values'][date_column]
+    
+    # Make sure we have a date column
+    if not date_column:
+        date_column = "Date"
+        date_column_value = datetime.now().strftime("%Y-%m-%d")
+    
+    # Add the date column to our data
+    data[date_column] = [date_column_value]
+    
+    # Now add other values from new_values, but SKIP the date column that we already added
     if event['new_values']:
         for key, value in event['new_values'].items():
+            # Skip if this is our date column (already added) or already exists
+            if key == date_column or key in data:
+                continue
+                
             cleaned_value = replace_nan_with_none(value)
-            data[key] = [cleaned_value]  # Add individual columns for each field
+            data[key] = [cleaned_value]
+    
+    # Add operational data marker for joining
+    data['_operational'] = [True]
+    data['_date_column'] = [date_column]
     
     return pd.DataFrame(data)
 
