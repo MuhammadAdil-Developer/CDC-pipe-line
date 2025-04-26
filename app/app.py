@@ -1,4 +1,4 @@
-from chatbot import router as chatbot_router
+# from chatbot import router as chatbot_router
 from fastapi import FastAPI, File, UploadFile,Form, BackgroundTasks, HTTPException, Query
 from typing import List, Dict, Any, Optional, Literal
 import pandas as pd
